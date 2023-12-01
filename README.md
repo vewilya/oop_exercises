@@ -7,7 +7,7 @@ Vorlage fuer Java-Projekte. Es nutzt einen auf
 Build und definiert die dafuer notwendige, standardisierte Verzeichnisstruktur.
 
 ## Verwendung
-Die Demoprojekte werden laufend ergänzt und anhand der wöchtnlichen Inputs im Unterricht OOP weiter ausgearbeitet. Ziel ist es Mini-Projekte wie Temperature, Car, etc.bis Ende des Semesters in einer soliden Form zu haben mit integrierten Unit Tests un dergleichen.
+Die Demoprojekte werden laufend ergänzt und anhand der wöchtnlichen Inputs im Unterricht OOP weiter ausgearbeitet. Ziel ist es Mini-Projekte wie Temperature, Car, etc.bis Ende des Semesters in einer soliden Form zu haben, mit integrierten Unit-Tests und dergleichen.
 
 ## Enthaltene Libraries (Dependencies)
 * Simple Logging Facade (SLF4J) - https://www.slf4j.org/
