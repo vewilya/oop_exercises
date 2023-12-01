@@ -16,6 +16,7 @@
 
 package ch.hslu.oop.SW11.File;
 
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.DataInputStream;
@@ -39,23 +40,43 @@ public final class FileWriter {
     }
 
     private static final Logger LOG = LoggerFactory.getLogger(FileWriter.class);
+    private static String basePath = "oop_exercises/src/main/java/ch/hslu/oop/SW11/File/tmp/";
 
     public static void main(String[] args) {
+
         final FileWriter fWriter = new FileWriter();
 
-        // fWriter.writeTextFile("oop_exercises/src/main/java/ch/hslu/oop/SW11/File/tmp/demo.txt");
+        /*
+         * Write int number to File.
+         */
+        fWriter.writeIntFile(basePath + "intTest.txt", 1);
+        /*
+         * Read Integer File.
+         */
+        LOG.info("Reading integer file: ");
+        fWriter.readIntFile(basePath + "intTest.txt");
 
-        // fWriter.readTextFile("oop_exercises/src/main/java/ch/hslu/oop/SW11/File/tmp/demo.txt");
+        // /*
+        // * Write Text File.
+        // */
+        // fWriter.writeTextFile(basePath + "demo.txt", "Write This!!!");
+
+        // /*
+        // * Read Text File.
+        // */
+        // LOG.info("Reading String: ");
+        // fWriter.readTextFile(basePath + "demo.txt");
     }
 
-    public void writeTextFile(final String file) {
+    public void writeTextFile(final String file, final String text) {
         String fileName = file.substring(5).substring(0, 4);
         String fileExtension = file.substring(5).substring(4, 8);
         String filePath = file.substring(0, 5);
 
         try (PrintWriter pw = new PrintWriter(new BufferedWriter(new OutputStreamWriter(
                 new FileOutputStream(file), Charset.forName("UTF-8"))))) {
-            pw.println("Short Text");
+
+            pw.println(text);
             pw.flush();
 
             LOG.info("Write a file called {} of type {} to {}", fileName.toUpperCase(), fileExtension, filePath);
@@ -64,19 +85,10 @@ public final class FileWriter {
         }
     }
 
-    public void writeIntFile (final int integerNumber) {
-        String filePath = "tmp/intTest.txt";
-        
-        // try (
-        //     FileOutputStream fos = new FileOutputStream(filePath);
-        //     DataOutputStream dos = new DataOutputStream(fos);
-        // ) {
-
-        // }
-        
-    }
-
-
+    /**
+     * Method to read a text file.
+     * @param file File path to read from
+     */
     public void readTextFile(final String file) {
         if (new File(file).exists()) {
             try (BufferedReader br = new BufferedReader(new InputStreamReader(
@@ -85,6 +97,45 @@ public final class FileWriter {
                 while ((line = br.readLine()) != null) {
                     System.out.println(line);
                 }
+            } catch (IOException ioe) {
+                LOG.error(ioe.getMessage(), ioe);
+            }
+        }
+    }
+
+    public void writeIntFile(final String file, final int number) {
+
+        try (DataOutputStream dos = new DataOutputStream(new FileOutputStream(file))) {
+
+            // First out original number from the input.
+            dos.write(number);
+
+            int b = 33;
+            dos.write(b);
+            double d = 0.432543654656d;
+            dos.writeDouble(d);
+            dos.flush();
+
+            LOG.info("Wrote output stream!");
+        } catch (IOException ioe) {
+            LOG.error(ioe.getMessage(), ioe);
+        }
+    }
+
+
+
+    public void readIntFile(final String file) {
+        if (new File(file).exists()) {
+            try (DataInputStream dis = new DataInputStream(new FileInputStream(file))) {
+                
+                // Reverse order reading out
+                int integerNumber = dis.read();         
+                System.out.println(integerNumber);
+                int b = dis.read();
+                System.out.println(b);
+                double d = dis.readDouble();
+                System.out.println(d);
+                
             } catch (IOException ioe) {
                 LOG.error(ioe.getMessage(), ioe);
             }
