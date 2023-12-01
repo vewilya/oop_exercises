@@ -1,0 +1,20 @@
+{"_id":"6rw8BjOaWMAnRvX2","name":"Temperature","kind":"StandardType","isMandatory":false}
+{"_id":"DCahMJkGvctK53hW","name":"string","kind":"StandardType","isMandatory":true,"defaultRole":"propertyType"}
+{"_id":"DjamPxi8uOb2D1X9","name":"boolean","kind":"StandardType","isMandatory":false}
+{"_id":"G64JRPgR0gkYXD6S","name":"add","isAbstract":false,"type":"tMo7PxfajafXxAoB","visibility":"public","isStatic":false,"classifierId":"fem5fKZH8ynh9DlF","discriminator":"Method","kind":"Method","index":0}
+{"_id":"IEwcVxpHxzq9jrCt","name":"double","kind":"StandardType","isMandatory":false}
+{"_id":"K6UhDVJaWrjLatxs","name":"clear","isAbstract":false,"type":"tMo7PxfajafXxAoB","visibility":"public","isStatic":false,"classifierId":"fem5fKZH8ynh9DlF","discriminator":"Method","kind":"Method","index":1}
+{"_id":"N4N6uoCdva4Coi7q","name":"time","kind":"StandardType","isMandatory":false}
+{"_id":"P98z7vVaKrdvepaJ","name":"getCount","isAbstract":false,"type":"dG9bpBN4kUqnA9NE","visibility":"public","isStatic":false,"classifierId":"fem5fKZH8ynh9DlF","discriminator":"Method","kind":"Method","index":2}
+{"methodId":"G64JRPgR0gkYXD6S","name":"temperatureObject","type":"6rw8BjOaWMAnRvX2","kind":"Parameter","discriminator":"Parameter","index":0,"_id":"PrR15vYjSc7SILS7"}
+{"_id":"VHatZjh5MquA5CiK","isAbstract":false,"isFinal":false,"isInterface":true,"diagramId":"mALMKBvzKmlqVmtk","name":"ArrayList","kind":"Class","position":{"x":712.5,"y":83},"discriminator":"Class","stereotypes":[]}
+{"_id":"ZQfx7Cou45VQNBR7","name":"","diagramId":"mALMKBvzKmlqVmtk","kind":"Relationship","relationshipKind":"Implementation","source":{"id":"fem5fKZH8ynh9DlF","isAutoDocking":true,"positionInPercent":0.5},"target":{"id":"VHatZjh5MquA5CiK","isAutoDocking":false,"dockingSide":"BOTTOM","positionInPercent":0.5,"isNavigable":false}}
+{"_id":"dG9bpBN4kUqnA9NE","name":"int","kind":"StandardType","isMandatory":false}
+{"_id":"fem5fKZH8ynh9DlF","isAbstract":false,"isFinal":false,"isInterface":false,"diagramId":"mALMKBvzKmlqVmtk","name":"Temperaturverlauf","kind":"Class","position":{"x":568.5,"y":286},"discriminator":"Class","stereotypes":[],"customDimension":{"width":413.01171875,"height":238.5966796875}}
+{"_id":"jeXK2If6ltcI1Rh4","name":"char","kind":"StandardType","isMandatory":false}
+{"_id":"mALMKBvzKmlqVmtk","name":"new diagram","kind":"ClassDiagram","titlePosition":{"x":550,"y":24},"version":"1.10.0","dimension":{"width":4000,"height":4000}}
+{"_id":"nK6uEcbTFL9QelMo","name":"any","kind":"StandardType","isMandatory":true,"defaultRole":"parameterType"}
+{"_id":"ntq01WAJYcmE9yxE","name":"temperaturVerlauf","isAbstract":false,"type":"VHatZjh5MquA5CiK","isReadOnly":false,"visibility":"private","isStatic":false,"classifierId":"fem5fKZH8ynh9DlF","discriminator":"Property","kind":"Property","index":0}
+{"_id":"tMo7PxfajafXxAoB","name":"void","kind":"StandardType","isMandatory":true,"defaultRole":"methodReturnType"}
+{"_id":"v8LYWKP4NYPKJ3Lc","name":"date","kind":"StandardType","isMandatory":false}
+{"_id":"vVMuHgrBmFZP8lof","name":"float","kind":"StandardType","isMandatory":false}
