@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package ch.hslu.oop.SW11.Temperature;
+package ch.hslu.oop.SW11.csvTemperatureRead;
 
 import java.beans.PropertyChangeListener;
 import java.io.DataInputStream;
@@ -34,7 +34,6 @@ import org.slf4j.LoggerFactory;
  */
 public class Application {
 
-    // Logge
     public Application() {
     }
 
@@ -45,8 +44,8 @@ public class Application {
         String basePath = "oop_exercises/src/main/java/ch/hslu/oop/SW11/Temperature/tmp/";
         String filePath = basePath + file;
 
-        int numObjects = tempHis.getCount();
         List<Temperature> tList = tempHis.getTemperatureList();
+        int numObjects = tempHis.getCount();
 
         if (!new File(basePath).exists())
             new File(basePath).mkdir();

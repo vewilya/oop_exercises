@@ -24,6 +24,9 @@ public class TemperatureHistoryTest {
     private TemperatureEventType eT;
 
     private static final Logger LOG = LoggerFactory.getLogger(TemperatureHistoryTest.class);
+    
+    
+    
     @Test
     void testAdd() {
         TemperatureHistory tD = new TemperatureHistory();
@@ -33,6 +36,8 @@ public class TemperatureHistoryTest {
 
         assertThat(tD.getCount()).isEqualTo(3);
     }
+
+
 
     @Test
     void testEventFired() {
