@@ -31,8 +31,7 @@ public final class TemperatureHistory implements Comparable<TemperatureHistory> 
             checkTemperatureExtrema(temperature);
             this.temperatureHistory.add(temperature);
         } catch (NullPointerException npe) {
-            throw new NullPointerException("The given temperature object is null");
-            
+            throw new NullPointerException("The given temperature object is null"); 
             // LOG.info("The given temperature object is null", npe.getMessage());
         }
         
@@ -82,6 +81,20 @@ public final class TemperatureHistory implements Comparable<TemperatureHistory> 
     public int getCount() {
         return this.temperatureHistory.size();
     }
+
+    public final List<Temperature> getTemperatureList() {
+
+        List<Temperature> temperatureList = new ArrayList<>();
+
+        Iterator<Temperature> iterator = temperatureHistory.iterator();
+            
+        while(iterator.hasNext()) {
+            final Temperature temp = iterator.next();                
+            temperatureList.add(temp);
+        }
+
+        return temperatureList;
+    } 
 
     public Temperature getMaxTemperature() {
 

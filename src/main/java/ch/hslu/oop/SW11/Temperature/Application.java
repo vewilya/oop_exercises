@@ -17,13 +17,18 @@
 package ch.hslu.oop.SW11.Temperature;
 
 import java.beans.PropertyChangeListener;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-// TODO Enter same temperature value?!?
-// TODO 
 /**
  * Application
  */
@@ -35,12 +40,63 @@ public class Application {
 
     private static final Logger LOG = LoggerFactory.getLogger(Application.class);
 
+    private static final void printStatstFile(final String file, final TemperatureHistory tempHis) {
+
+        String basePath = "oop_exercises/src/main/java/ch/hslu/oop/SW11/Temperature/tmp/";
+        String filePath = basePath + file;
+
+        int numObjects = tempHis.getCount();
+        List<Temperature> tList = tempHis.getTemperatureList();
+
+        if (!new File(basePath).exists())
+            new File(basePath).mkdir();
+
+        try (DataOutputStream dos = new DataOutputStream(new FileOutputStream(filePath))) {
+
+            dos.writeInt(numObjects);
+
+            for (final Temperature t : tList) {
+                dos.writeDouble(t.getTemperatureCelsius());
+            }
+
+            LOG.info("Wrote Temperature Stats to File!");
+            dos.flush();
+        } catch (IOException ioe) {
+            LOG.error(ioe.getMessage(), ioe);
+        }
+    }
+
+    private static final void readStatsFile(String file) {
+        String basePath = "oop_exercises/src/main/java/ch/hslu/oop/SW11/Temperature/tmp/";
+        String filePath = basePath + file;
+
+        try (DataInputStream dis = new DataInputStream(new FileInputStream(filePath))) {
+            int numObjects = dis.readInt();
+            System.out.println(numObjects);
+
+            for (int i = 0; i < numObjects; i++) {
+                double value = dis.readDouble();
+                System.out.println(value);
+            }
+
+        } catch (IOException ioe) {
+            LOG.error(ioe.getMessage(), ioe);
+        }
+
+    }
+
+    private final static void deleteStats() {
+        File f = new File("oop_exercises/src/main/java/ch/hslu/oop/SW11/Temperature/tmp/temperatureStats.txt");
+
+        if (f.exists())
+            f.delete();
+    }
     public static void main(String[] args) {
 
         String input;
         Scanner scanner = new Scanner(System.in);
-        TemperatureHistory temperatureHistory = new TemperatureHistory();
 
+        TemperatureHistory temperatureHistory = new TemperatureHistory();
         temperatureHistory.addTemperatureEventListener(new TemperatureEventListener() {
             @Override
             public void temperatureEventChange(TemperatureEvent temperatureEvent) {
@@ -53,30 +109,46 @@ public class Application {
 
             input = scanner.next();
 
-            if(!input.equals("exit")) {
+            if (!input.equals("exit") && !input.equals("reset")) {
                 try {
                     float value = Float.valueOf(input);
                     Temperature temperature = Temperature.createFromCelsius(value);
-    
+
                     // Adding temperature to history
                     temperatureHistory.add(temperature);
                     LOG.info("Entered temperature value is {} Degree Celsius.", input);
-    
+
                 } catch (NumberFormatException nfe) {
                     LOG.error("Please enter a floating point value! Message: {}", nfe.getMessage(), nfe);
                 } catch (IllegalArgumentException iae) {
                     LOG.error("Please respect Low Temperature Limit", iae.toString());
                 }
+            } else if (input.equals("reset")) {
+                System.out.println("Reset");
+                
+                // Delete Stats File
+                deleteStats();
+
+                // Reset Temperature History
+                temperatureHistory.clear();
             } else {
                 LOG.info("Exit Progam");
-                LOG.info("Temperature History {}", temperatureHistory.toString());
+
+                
+                if (temperatureHistory.getCount() > 0) {
+                    LOG.info("Temperature History {}", temperatureHistory.toString());
+                    printStatstFile("temperatureStats.txt", temperatureHistory);
+                } else 
+                    LOG.info("Empty temperature history. No file was saved to disk");
+                    
+                readStatsFile("temperatureStats.txt");
             }
 
         } while (!"exit".equals(input));
 
-
         // Avoid Memory Leakage and close scanner object!
         scanner.close();
-        
+
     } // close main
+
 }
