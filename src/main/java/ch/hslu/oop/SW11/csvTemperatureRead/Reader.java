@@ -16,37 +16,24 @@
 
 package ch.hslu.oop.SW11.csvTemperatureRead;
 
-import java.beans.PropertyChangeListener;
 import java.io.BufferedReader;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.lang.reflect.Array;
 import java.nio.charset.Charset;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Scanner;
+
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
 public final class Reader {
-    
-    private final String filePath = "oop_exercises/src/main/java/ch/hslu/oop/SW11/csvTemperatureRead/netatmo-export-202301-202304.csv";
-    File csvFile = new File(filePath);
 
     private static final Logger LOG = LoggerFactory.getLogger(Reader.class);
 
     public Reader() {}
-
 
     public static void main(String[] args) {
 
@@ -75,17 +62,19 @@ public final class Reader {
                     Float t = Float.valueOf(sm.getSplitPart(line, ";", 2));
                     String timestampAsString = sm.getSplitPart(line, ";", 1);
                     LocalDateTime timestamp = sm.formatLTD(timestampAsString);
-
+                    
                     // Add Temperatures to History
-                    tHis.add(Temperature.createFromCelsius(t));
+                    tHis.add(new TemperaturePoint(Temperature.createFromCelsius(t), timestamp));
                 }
 
-                System.out.println("Number of Temperatures: " + tHis.getCount());
+                // System.out.println("Number of Temperatures: " + tHis.getCount());
+
+                // System.out.println("Minimum Temperature: " + tHis.getMinTemperature());
+                // System.out.println("Maximum Temperature: " + tHis.getMaxTemperature());
+                // System.out.println("Average Temperature: " + tHis.getAverageTemperature());
                 
-                System.out.println("Minimum Temperature: " + tHis.getMinTemperature());
-                System.out.println("Maximum Temperature: " + tHis.getMaxTemperature());
-                System.out.println("Average Temperature: " + tHis.getAverageTemperature());
-                
+                System.out.println(tHis.toString());
+            
             } catch (IOException ioe) {
                 LOG.error(ioe.getMessage(), ioe);
             }

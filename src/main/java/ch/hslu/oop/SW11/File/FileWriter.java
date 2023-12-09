@@ -49,12 +49,12 @@ public final class FileWriter {
         /*
          * Write int number to File.
          */
-        fWriter.writeIntFile(basePath + "intTest.txt", 1);
+        fWriter.writeIntFile(basePath + "intTest.bin", 1);
         /*
          * Read Integer File.
          */
         LOG.info("Reading integer file: ");
-        fWriter.readIntFile(basePath + "intTest.txt");
+        fWriter.readIntFile(basePath + "intTest.bin");
 
         // /*
         // * Write Text File.
@@ -111,9 +111,11 @@ public final class FileWriter {
             dos.write(number);
 
             int b = 33;
-            dos.write(b);
+            dos.writeInt(b);
             double d = 0.432543654656d;
             dos.writeDouble(d);
+
+            // Flush Output Stream
             dos.flush();
 
             LOG.info("Wrote output stream!");
@@ -131,7 +133,7 @@ public final class FileWriter {
                 // Reverse order reading out
                 int integerNumber = dis.read();         
                 System.out.println(integerNumber);
-                int b = dis.read();
+                int b = dis.readInt();
                 System.out.println(b);
                 double d = dis.readDouble();
                 System.out.println(d);

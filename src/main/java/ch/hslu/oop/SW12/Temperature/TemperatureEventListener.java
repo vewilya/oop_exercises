@@ -1,4 +1,4 @@
-package ch.hslu.oop.SW11.Temperature;
+package ch.hslu.oop.SW12.Temperature;
 
 import java.util.EventListener;
 

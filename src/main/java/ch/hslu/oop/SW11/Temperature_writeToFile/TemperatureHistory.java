@@ -1,4 +1,4 @@
-package ch.hslu.oop.SW11.csvTemperatureRead;
+package ch.hslu.oop.SW11.Temperature_writeToFile;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

@@ -1,8 +1,8 @@
-package ch.hslu.oop.SW11.Temperature;
+package ch.hslu.oop.SW11.Temperature_writeToFile;
 
 import java.util.Objects;
 
-public final class Temperature implements Comparable<Temperature> {
+public class Temperature implements Comparable<Temperature> {
     
     private float temperatureCelsius;
     private static final float KELVIN_OFFSET = 273.15f;
@@ -15,7 +15,7 @@ public final class Temperature implements Comparable<Temperature> {
     }
 
 
-    private Temperature(final float tempInCelsius)
+    protected Temperature(final float tempInCelsius)
     {
         if(Temperature.convertCelsiusToKelvin(tempInCelsius) < Temperature.LOW_TEMPERATURE_LIMIT) {
             throw new IllegalArgumentException("Temperature value is exceeding Low Temperature Limit! value should not be lower than -273.15 Kelvin or " + Temperature.convertKelvinToCelsius(LOW_TEMPERATURE_LIMIT) + " Celsius repectively!");
