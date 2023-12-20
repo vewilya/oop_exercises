@@ -16,7 +16,10 @@ public final class TemperatureHistory implements Comparable<TemperatureHistory> 
     }
 
     public void add(final Temperature temperature) {
-        this.temperatureHistory.add(temperature);
+        if (temperature == null)
+            return;
+        else
+            this.temperatureHistory.add(temperature);
     }
 
     public void clear() {
@@ -35,7 +38,6 @@ public final class TemperatureHistory implements Comparable<TemperatureHistory> 
         }
 
         // Ruft die compareTo()-methode auf
-        // return Collections.max(this.temperatureHistory);
         return Temperature.createFromCelsius(Collections.max(this.temperatureHistory).getTemperatureCelsius());
     }
 

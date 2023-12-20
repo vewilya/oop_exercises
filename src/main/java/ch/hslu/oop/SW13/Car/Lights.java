@@ -13,6 +13,7 @@ public final class Lights implements Switchable {
     private final List<PropertyChangeListener> changeListeners = new ArrayList<>();
 
     public Lights() {
+        // empty constructor
     }
 
     @Override
@@ -43,12 +44,12 @@ public final class Lights implements Switchable {
 
     // Event Listener
     public void addPropertyChangeListener(final PropertyChangeListener listener) {
-        if (!listener.equals(null))
+        if (listener != null)
             this.changeListeners.add(listener);
     }
 
     public void removePropertyChangeListener(final PropertyChangeListener listener) {
-        if (!listener.equals(null))
+        if (listener != null)
             this.changeListeners.remove(listener);
     }
 

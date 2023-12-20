@@ -20,7 +20,6 @@ import javax.swing.KeyStroke;
 import javax.swing.border.Border;
 
 import org.slf4j.LoggerFactory;
-
 import org.slf4j.Logger;
 
 @SuppressWarnings("serial")
@@ -151,6 +150,7 @@ public class EngineView extends JFrame implements ActionListener {
                 if (this.viewState == ViewState.ON) {
                     this.labelState.setText("Engine is ON");
                     this.labelState.setBackground(Color.GREEN);
+                    this.buttonOn.setEnabled(false);
                     this.decreaseRPM.setEnabled(true);
                     this.buttonOff.setEnabled(true);
                 }
@@ -187,6 +187,7 @@ public class EngineView extends JFrame implements ActionListener {
 
                 this.decreaseRPM.setEnabled(false);
                 this.buttonOff.setEnabled(false);
+                this.buttonOn.setEnabled(true);
 
                 this.firePropertyChangeEvent(new PropertyChangeEvent(this, "EngineState",
                         State.ON, State.OFF));
@@ -197,20 +198,17 @@ public class EngineView extends JFrame implements ActionListener {
     }
 
     // View Listeners
+    @Override
     public void addPropertyChangeListener(final PropertyChangeListener listener) {
-        try {
+        if (listener != null)
             this.viewListeners.add(listener);
-        } catch (NullPointerException npe) {
-            LOG.error("There is no listener object being handed over", npe.getMessage());
-        }
+
     }
 
+    @Override
     public void removePropertyChangeListener(final PropertyChangeListener listener) {
-        try {
+        if (listener != null)
             this.viewListeners.remove(listener);
-        } catch (NullPointerException npe) {
-            LOG.error("There is no listener object being handed over", npe.getMessage());
-        }
     }
 
     private void firePropertyChangeEvent(final PropertyChangeEvent event) {

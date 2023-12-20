@@ -18,6 +18,7 @@ public final class Lights implements Switchable {
      * Constructs a new Lights object.
      */
     public Lights() {
+        // empty default constructor
     }
 
     /**

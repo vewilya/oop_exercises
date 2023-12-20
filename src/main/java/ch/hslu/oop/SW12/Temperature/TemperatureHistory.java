@@ -51,7 +51,7 @@ public final class TemperatureHistory implements Comparable<TemperatureHistory> 
 
     public void checkTemperatureExtrema(final TemperaturePoint temperaturePoint) {
 
-        if (temperaturePoint.compareTo(minTempCache) == -1) {
+        if (temperaturePoint.compareTo(minTempCache) < 0) {
 
             minTempCache = TemperaturePoint.createFromTemperaturePoint(temperaturePoint);
 
@@ -62,7 +62,7 @@ public final class TemperatureHistory implements Comparable<TemperatureHistory> 
             LOG.info("New Minimum Temperature: {}", newMinTemperature);
         }
 
-        if (temperaturePoint.compareTo(maxTempCache) == 1) {
+        if (temperaturePoint.compareTo(maxTempCache) > 0) {
             maxTempCache = TemperaturePoint.createFromTemperaturePoint(temperaturePoint);
 
             float newMaxTemperature = temperaturePoint.getTemperature().getTemperatureCelsius();
@@ -82,16 +82,14 @@ public final class TemperatureHistory implements Comparable<TemperatureHistory> 
 
         List<TemperaturePoint> temperatureList = new ArrayList<>();
 
-        try {
+        if (this.getCount() > 0) {
+
             Iterator<TemperaturePoint> iterator = temperatureHistory.iterator();
 
             while (iterator.hasNext()) {
                 final TemperaturePoint temp = iterator.next();
                 temperatureList.add(temp);
             }
-
-        } catch (NullPointerException npe) {
-            LOG.error("The tmeperature history is empty", npe.getMessage());
         }
 
         return temperatureList;
@@ -136,28 +134,21 @@ public final class TemperatureHistory implements Comparable<TemperatureHistory> 
     }
 
     public void addTemperatureEventListener(final TemperatureEventListener listener) {
-        try {
+        if (listener != null)
             this.changeListeners.add(listener);
-        } catch (NullPointerException npe) {
-            LOG.error("Listener object that's being handed over is null!", npe.getMessage());
-        }
     }
 
     public void removeTemperatureEventListener(final TemperatureEventListener listener) {
-        try {
+        if (listener != null)
             this.changeListeners.remove(listener);
-        } catch (NullPointerException npe) {
-            LOG.error("Listener object that's being handed over is null!", npe.getMessage());
-        }
     }
 
     public void fireTemperatureEvent(final TemperatureEvent temperatureEvent) {
-        try {
-            for (final TemperatureEventListener listener : this.changeListeners) {
-                listener.temperatureEventChange(temperatureEvent);
-            }
-        } catch (NullPointerException npe) {
-            LOG.info("There are currently no changeListeners registered!", npe.getMessage());
+        if (changeListeners.isEmpty())
+            return;
+
+        for (final TemperatureEventListener listener : this.changeListeners) {
+            listener.temperatureEventChange(temperatureEvent);
         }
     }
 

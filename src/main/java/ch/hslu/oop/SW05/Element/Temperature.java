@@ -169,6 +169,8 @@ public class Temperature {
                 else if (temperatureCelsius >= -196.0f)
                     state = "gaseous";
                 break;
+            default:
+                state = "unkown";
         }
 
         return state;
@@ -188,7 +190,7 @@ public class Temperature {
         String state = "solid";
 
         for (int i = 0; i < elements.length; i++) {
-            if (element == elements[i]) {
+            if (element.equals(elements[i])) {
                 // Check index
                 System.out.println(i);
 

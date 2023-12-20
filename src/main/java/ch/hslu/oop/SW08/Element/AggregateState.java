@@ -27,6 +27,6 @@ public enum AggregateState {
     }
 
     public String toString() {
-        return this.aggregateState.toString();
+        return this.aggregateState;
     }
 }

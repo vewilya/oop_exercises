@@ -7,7 +7,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -57,46 +56,39 @@ public final class TemperaturePointHistory implements Comparable<TemperaturePoin
 
     public void checkTemperatureExtrema(final TemperaturePoint temperaturePoint) {
 
-        try {
-            float tpCelsius = temperaturePoint.getTemperature().getTemperatureCelsius();
+        if (temperaturePoint == null)
+            return;
 
-            if (maxTempCache.compareTo(temperaturePoint) == -1) {
+        float tpCelsius = temperaturePoint.getTemperature().getTemperatureCelsius();
 
-                maxTempCache = new TemperaturePoint(temperaturePoint.getTemperature(), temperaturePoint.getLDT());
+        if (maxTempCache.compareTo(temperaturePoint) == -1) {
 
-                LOG.info("New Maximum Temperature: {}", Temperature.createFromCelsius(tpCelsius));
+            maxTempCache = new TemperaturePoint(temperaturePoint.getTemperature(), temperaturePoint.getLDT());
 
-                fireTemperatureEvent(new TemperatureEvent(this,
-                        Temperature.createFromCelsius(tpCelsius), TemperatureEventType.MAX));
-            } else if (minTempCache.compareTo(temperaturePoint) == 1) {
-                minTempCache = new TemperaturePoint(temperaturePoint.getTemperature(), temperaturePoint.getLDT());
+            LOG.info("New Maximum Temperature: {}", Temperature.createFromCelsius(tpCelsius));
 
-                LOG.info("New Minimum Temperature: {}", Temperature.createFromCelsius(tpCelsius));
+            fireTemperatureEvent(new TemperatureEvent(this,
+                    Temperature.createFromCelsius(tpCelsius), TemperatureEventType.MAX));
+        } else if (minTempCache.compareTo(temperaturePoint) == 1) {
+            minTempCache = new TemperaturePoint(temperaturePoint.getTemperature(), temperaturePoint.getLDT());
 
-                fireTemperatureEvent(new TemperatureEvent(this,
-                        Temperature.createFromCelsius(tpCelsius), TemperatureEventType.MIN));
-            }
-        } catch (NullPointerException npe) {
-            LOG.error("No valid TemperaturePoint Object!", npe.getMessage());
+            LOG.info("New Minimum Temperature: {}", Temperature.createFromCelsius(tpCelsius));
+
+            fireTemperatureEvent(new TemperatureEvent(this,
+                    Temperature.createFromCelsius(tpCelsius), TemperatureEventType.MIN));
         }
+
     }
 
     public int getCount() {
         return (int) temperaturePointHistory.stream().count();
     }
 
-    public final List<TemperaturePoint> getTemperatureList() {
+    public final Collection<TemperaturePoint> getTemperatureList() {
+        if (this.temperaturePointHistory.isEmpty())
+            return Collections.emptyList();
 
-        List<TemperaturePoint> tpCollection = new ArrayList<TemperaturePoint>();
-
-        try {
-            tpCollection = (List<TemperaturePoint>) this.temperaturePointHistory;
-
-        } catch (NullPointerException npe) {
-            LOG.error("The tmeperature history is empty", npe.getMessage());
-        }
-
-        return tpCollection;
+        return new ArrayList<>(this.temperaturePointHistory);
     }
 
     public final List<TemperaturePoint> getPositiveTemperatures() {
@@ -107,71 +99,49 @@ public final class TemperaturePointHistory implements Comparable<TemperaturePoin
     }
 
     public TemperaturePoint getMaxTemperature() {
-        double maxTemp = Double.MIN_VALUE;
 
-        try {
-            maxTemp = temperaturePointHistory.stream()
-                    .mapToDouble(t -> t.getTemperature().getTemperatureCelsius())
-                    .max().getAsDouble();
-        } catch (NullPointerException npe) {
-            LOG.error("The TemperaturePoint history is empty", npe.getMessage());
-        }
+        double maxTemp = temperaturePointHistory.stream()
+                .mapToDouble(t -> t.getTemperature().getTemperatureCelsius())
+                .max().getAsDouble();
 
         return new TemperaturePoint(Temperature.createFromCelsius((float) maxTemp), LocalDateTime.now());
     }
 
     public TemperaturePoint getMinTemperature() {
 
-        float minTemp = Float.MAX_VALUE;
-
-        try {
-            minTemp = temperaturePointHistory.stream().map(t -> t.getTemperature())
-                    .map(temp -> temp.getTemperatureCelsius()).min(Comparator.naturalOrder()).get();
-        } catch (NullPointerException npe) {
-            LOG.error("The TemperaturePoint history is empty", npe.getMessage());
-        }
+        float minTemp = temperaturePointHistory.stream().map(t -> t.getTemperature())
+                .map(t -> t.getTemperatureCelsius())
+                .min(Comparator.naturalOrder())
+                .orElse(Float.MAX_VALUE);
 
         return new TemperaturePoint(Temperature.createFromCelsius(minTemp), LocalDateTime.now());
     }
 
     public TemperaturePoint getAverageTemperature() {
 
-        double average = Double.MIN_VALUE;
-
-        try {
-            average = temperaturePointHistory.stream().mapToDouble(t -> t.getTemperature().getTemperatureCelsius())
-                    .average().getAsDouble();
-
-        } catch (NullPointerException npe) {
-            LOG.error("The TemperaturePoint history is empty", npe.getMessage());
-        }
+        double average = temperaturePointHistory.stream().mapToDouble(t -> t.getTemperature().getTemperatureCelsius())
+                .average().getAsDouble();
 
         return new TemperaturePoint(Temperature.createFromCelsius((float) average), LocalDateTime.now());
     }
 
     public void addTemperatureEventListener(final TemperatureEventListener listener) {
-        try {
+        if (listener != null)
             this.changeListeners.add(listener);
-        } catch (NullPointerException npe) {
-            LOG.error("Listener object that's being handed over is null!", npe.getMessage());
-        }
+
     }
 
     public void removeTemperatureEventListener(final TemperatureEventListener listener) {
-        try {
+        if (listener != null)
             this.changeListeners.remove(listener);
-        } catch (NullPointerException npe) {
-            LOG.error("Listener object that's being handed over is null!", npe.getMessage());
-        }
     }
 
     public void fireTemperatureEvent(final TemperatureEvent temperatureEvent) {
-        try {
-            for (final TemperatureEventListener listener : this.changeListeners) {
-                listener.temperatureEventChange(temperatureEvent);
-            }
-        } catch (NullPointerException npe) {
-            LOG.info("There are currently no changeListeners registered!", npe.getMessage());
+        if (changeListeners.isEmpty())
+            return;
+
+        for (final TemperatureEventListener listener : this.changeListeners) {
+            listener.temperatureEventChange(temperatureEvent);
         }
     }
 

@@ -35,7 +35,7 @@ public class Temperature {
 
     /**
      * Constructor with a given parameter temperature in Celsius.
-     * 
+     *
      * @param tempInCelsius The temperature in Celsius
      */
     public Temperature(float tempInCelsius) {
@@ -45,7 +45,7 @@ public class Temperature {
 
     /**
      * Returns the current temperature in Celsius.
-     * 
+     *
      * @return The current temperature in Celsius
      */
     public float getTemperatureCelsius() {
@@ -54,7 +54,7 @@ public class Temperature {
 
     /**
      * Sets the current temperature in Celsius.
-     * 
+     *
      * @param tempInCelsius The new temperature in Celsius
      */
     public void setTemperatureCelsius(float tempInCelsius) {
@@ -63,7 +63,7 @@ public class Temperature {
 
     /**
      * Returns the current temperature in Fahrenheit.
-     * 
+     *
      * @return The current temperature in Fahrenheit
      */
     public float getTempFahrenheit() {
@@ -72,7 +72,7 @@ public class Temperature {
 
     /**
      * Returns the current temperature in Kelvin.
-     * 
+     *
      * @return The current temperature in Kelvin
      *
      */
@@ -82,7 +82,7 @@ public class Temperature {
 
     /**
      * Converts the current temperature Celsius to Fahrenheit.
-     * 
+     *
      * @param tempInFahrenheit The new temperature in Fahrenheit
      * @return The converted Fahrenheit temperature in Celsius
      */
@@ -92,7 +92,7 @@ public class Temperature {
 
     /**
      * Converts the current temperature Celsius to Kelvin.
-     * 
+     *
      * @param tempInCelsius The new temperature in Kelvin
      * @return The converted Ceslius temperature in Fahrenheit
      */
@@ -102,7 +102,7 @@ public class Temperature {
 
     /**
      * Converts the current temperature Celsius to Kelvin.
-     * 
+     *
      * @param tempInCelsius The new temperature in Celsius
      * @return The converted Celsius temperature in Kelvin
      */
@@ -112,7 +112,7 @@ public class Temperature {
 
     /**
      * Changes the current temperature with a relative delta value in Celsius.
-     * 
+     *
      * @param tempChangeCelsius The temperature delta value in Celsius
      */
     public void changeTempRelativeCelsius(float tempChangeCelsius) {
@@ -121,7 +121,7 @@ public class Temperature {
 
     /**
      * Changes the current temperature with a relative delta value in Kelvin.
-     * 
+     *
      * @param tempChangeKelvin The temperature delta value in Kelvin
      */
     public void changeTempRelativeKelvin(float tempChangeKelvin) {
@@ -134,7 +134,7 @@ public class Temperature {
 
     /**
      * Returns the state of the given element at the current temperature.
-     * 
+     *
      * @param element The element to check for its aggrgate state
      * @return The aggregate state of the given element.
      */
@@ -169,6 +169,9 @@ public class Temperature {
                 else if (temperatureCelsius >= -196.0f)
                     state = "gaseous";
                 break;
+            default:
+                state = "unknown";
+
         }
 
         return state;
@@ -176,7 +179,7 @@ public class Temperature {
 
     /**
      * Returns the state of the given element at the current temperature
-     * 
+     *
      * @param element The element to check
      * @return The aggregate state of the given element
      */
@@ -188,7 +191,7 @@ public class Temperature {
         String state = "solid";
 
         for (int i = 0; i < elements.length; i++) {
-            if (element == elements[i]) {
+            if (element.equals(elements[i])) {
                 // Check index
                 System.out.println(i);
 

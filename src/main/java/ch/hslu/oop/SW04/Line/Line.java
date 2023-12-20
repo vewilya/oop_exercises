@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 /**
  * Class representing a line with a start and end point.
- * 
+ *
  * @author Urs Bollhalder
  * @version 1.0
  * @see ch.hslu.oop.SW04.Line.Point
@@ -49,7 +49,7 @@ public final class Line {
      * @return End point line object
      */
     public Point getStartPointObject() {
-        return startPoint;
+        return new Point(startPoint.getX(), startPoint.getY());
     }
 
     /**
@@ -58,7 +58,7 @@ public final class Line {
      * @return line end point object
      */
     public Point getEndPointObject() {
-        return endPoint;
+        return new Point(endPoint.getX(), endPoint.getY());
     }
 
     /**

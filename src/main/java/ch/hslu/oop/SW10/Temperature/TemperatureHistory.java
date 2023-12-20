@@ -32,9 +32,8 @@ public final class TemperatureHistory implements Comparable<TemperatureHistory> 
             checkTemperatureExtrema(temperature);
             this.temperatureHistory.add(temperature);
         } catch (NullPointerException npe) {
+            LOG.info("The given temperature object is null. {}", npe.getMessage());
             throw new NullPointerException("The given temperature object is null");
-
-            // LOG.info("The given temperature object is null", npe.getMessage());
         }
 
     }
@@ -129,29 +128,24 @@ public final class TemperatureHistory implements Comparable<TemperatureHistory> 
     }
 
     public void addTemperatureEventListener(final TemperatureEventListener listener) {
-        try {
+        if (listener != null)
             this.changeListeners.add(listener);
-        } catch (NullPointerException npe) {
-            LOG.error("Listener object that's being handed over is null!", npe.getMessage());
-        }
     }
 
     public void removeTemperatureEventListener(final TemperatureEventListener listener) {
-        try {
+        if (listener != null)
             this.changeListeners.remove(listener);
-        } catch (NullPointerException npe) {
-            LOG.error("Listener object that's being handed over is null!", npe.getMessage());
-        }
     }
 
     public void fireTemperatureEvent(final TemperatureEvent temperatureEvent) {
-        try {
-            for (final TemperatureEventListener listener : this.changeListeners) {
-                listener.temperatureEventChange(temperatureEvent);
-            }
-        } catch (NullPointerException npe) {
-            LOG.info("There are currently no changeListeners registered!", npe.getMessage());
+
+        if (temperatureEvent == null)
+            return;
+
+        for (final TemperatureEventListener listener : this.changeListeners) {
+            listener.temperatureEventChange(temperatureEvent);
         }
+
     }
 
     // ------------------------ // // ------------------------ //

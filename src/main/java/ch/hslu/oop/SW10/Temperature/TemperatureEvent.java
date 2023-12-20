@@ -1,5 +1,6 @@
 package ch.hslu.oop.SW10.Temperature;
 
+import java.io.Serializable;
 import java.util.EventObject;
 
 public final class TemperatureEvent extends EventObject {

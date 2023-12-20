@@ -135,19 +135,13 @@ public final class TemperatureHistory implements Comparable<TemperatureHistory> 
     }
 
     public void addTemperatureEventListener(final TemperatureEventListener listener) {
-        try {
+        if (listener != null)
             this.changeListeners.add(listener);
-        } catch (NullPointerException npe) {
-            LOG.error("Listener object that's being handed over is null!", npe.getMessage());
-        }
     }
 
     public void removeTemperatureEventListener(final TemperatureEventListener listener) {
-        try {
+        if (listener != null)
             this.changeListeners.remove(listener);
-        } catch (NullPointerException npe) {
-            LOG.error("Listener object that's being handed over is null!", npe.getMessage());
-        }
     }
 
     public void fireTemperatureEvent(final TemperatureEvent temperatureEvent) {

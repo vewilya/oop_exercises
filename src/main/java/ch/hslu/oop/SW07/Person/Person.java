@@ -14,9 +14,10 @@ public final class Person implements Comparable<Person> {
         long id = person.generateID();
         System.out.println("ID: " + id);
 
-        final long personID = 4235654576567L;
-        Person person2 = new Person(personID, "Michael", "Jordan");
+        // final long personID = 4235654576567L;
+        Person person2 = new Person(id, "Michael", "Jordan");
         System.out.println(person2.toString());
+
     }
 
     // ---------------------- Attributes ---------------------- //
@@ -26,6 +27,7 @@ public final class Person implements Comparable<Person> {
     private String firstname; // absichtlich nicht final
     private String lastname; // absichtlich nicht final
 
+    private Random random = new Random();
     // ---------------------- Constructor ---------------------- //
 
     /**
@@ -40,7 +42,7 @@ public final class Person implements Comparable<Person> {
 
     /**
      * Constructor initialises name and surename and id.
-     * 
+     *
      * @param id       The id of the person.
      * @param name     The name of the person.
      * @param lastname The lastname of the person.
@@ -55,7 +57,7 @@ public final class Person implements Comparable<Person> {
 
     /**
      * Returns the firstname of the person.
-     * 
+     *
      * @return The firstname of the person.
      */
     public final String getFirstname() {
@@ -64,7 +66,7 @@ public final class Person implements Comparable<Person> {
 
     /**
      * Sets the firstname of the person as a String.
-     * 
+     *
      * @param firstname Firstname of the person
      */
     public final void setFirstname(String firstname) {
@@ -73,7 +75,7 @@ public final class Person implements Comparable<Person> {
 
     /**
      * Returns the lastname of the person object as a String.
-     * 
+     *
      * @return The lastname of the person
      */
     public final String getLastname() {
@@ -82,7 +84,7 @@ public final class Person implements Comparable<Person> {
 
     /**
      * Sets the lastname of the person as a String.
-     * 
+     *
      * @param lastname given lastname
      */
     public final void setLastname(String lastname) {
@@ -91,7 +93,7 @@ public final class Person implements Comparable<Person> {
 
     /**
      * Returns the unique id of the person object as a long.
-     * 
+     *
      * @return unique id verifier
      */
     public final long getId() {
@@ -102,7 +104,7 @@ public final class Person implements Comparable<Person> {
     /**
      * Override of the toString method and returns the the id and the full name of
      * the person object.
-     * 
+     *
      * @return Id and full name of the person.
      */
     @Override
@@ -127,7 +129,7 @@ public final class Person implements Comparable<Person> {
      * Overrides the inherited equals method of the Java <code>Object</code> base
      * class.
      * The method checks for equality of value types.
-     * 
+     *
      * @param The object to compare it with
      */
     @Override
@@ -153,13 +155,13 @@ public final class Person implements Comparable<Person> {
     // ---------------------- Private Methods ---------------------- //
     /**
      * Generates a unique ID for a Person object.
-     * 
+     *
      * @return a long value representing the generated ID.
      */
     private long generateID() {
-        long id = new Random().nextLong();
+        long randomID = random.nextLong();
 
-        return Math.abs(id);
+        return randomID;
     }
 
 }

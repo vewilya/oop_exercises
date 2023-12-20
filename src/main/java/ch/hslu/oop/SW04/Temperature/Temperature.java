@@ -1,5 +1,8 @@
 package ch.hslu.oop.SW04.Temperature;
 
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
+
 /**
  * The <code>Temperature</code> class represents a temperature value in Celsius.
  *
@@ -24,6 +27,7 @@ public final class Temperature {
      * Our main attribute holding the current temperature in Celsius.
      */
     private float temperatureCelsius;
+    private static final Logger LOG = LoggerFactory.getLogger(Temperature.class);
 
     /**
      * Default constructor
@@ -147,7 +151,6 @@ public final class Temperature {
                 if (temperatureCelsius < -38.83f) {
                     state = "solid";
                 } else if (temperatureCelsius >= -38.83f) {
-
                     state = "liquid";
                 } else if (temperatureCelsius >= 357.0f) {
                     state = "gaseous";
@@ -158,7 +161,6 @@ public final class Temperature {
                 if (temperatureCelsius < 327.43f) {
                     state = "solid";
                 } else if (temperatureCelsius >= 327.43f) {
-
                     state = "liquid";
                 } else if (temperatureCelsius >= 1744.0f) {
                     state = "gaseous";
@@ -174,6 +176,8 @@ public final class Temperature {
                     state = "gaseous";
                 }
                 break;
+            default:
+                state = "unknown";
         }
 
         return state;
@@ -186,27 +190,25 @@ public final class Temperature {
      * @return The aggregate state of the given element
      */
     public String getStateOfElements(String element) {
-        String elements[] = { "Hg", "Pb", "N" };
-        float boilingPoints[] = { -38.83f, 327.43f, -210.1f };
-        float evaporationPoints[] = { 357.0f, 1744.0f, -196.0f };
+        String[] elements = { "Hg", "Pb", "N" };
+        float[] boilingPoints = { -38.83f, 327.43f, -210.1f };
+        float[] evaporationPoints = { 357.0f, 1744.0f, -196.0f };
 
         String state = "solid";
 
         for (int i = 0; i < elements.length; i++) {
-            if (element == elements[i]) {
-                // Check index
-                System.out.println(i);
+            if (element.equals(elements[i])) {
 
                 // Check States
                 if (temperatureCelsius < boilingPoints[i]) {
                     state = "solid";
-                    System.out.println("solid");
+                    LOG.info("State is {}", state);
                 } else if (temperatureCelsius >= boilingPoints[i]) {
                     state = "liquid";
-                    System.out.println("liquid");
+                    LOG.info("State is {}", state);
                 } else if (temperatureCelsius >= evaporationPoints[i]) {
                     state = "gaseous";
-                    System.out.println("gaseous");
+                    LOG.info("State is {}", state);
                 }
 
             }

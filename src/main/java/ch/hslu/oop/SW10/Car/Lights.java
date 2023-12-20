@@ -43,12 +43,12 @@ public final class Lights implements Switchable {
 
     // Event Listener
     public void addPropertyChangeListener(final PropertyChangeListener listener) {
-        if (!listener.equals(null))
+        if (listener != null)
             this.changeListeners.add(listener);
     }
 
     public void removePropertyChangeListener(final PropertyChangeListener listener) {
-        if (!listener.equals(null))
+        if (listener != null)
             this.changeListeners.remove(listener);
     }
 

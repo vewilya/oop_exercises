@@ -18,6 +18,7 @@ public final class Engine implements Switchable {
     private static final Logger LOG = LoggerFactory.getLogger(Engine.class);
 
     public Engine() {
+        // Empty default constructor
     }
 
     public Engine(boolean isEngineSwitchedOn) {
@@ -90,19 +91,14 @@ public final class Engine implements Switchable {
 
     // PropertyChange Listeners
     public void addPropertyChangeListener(final PropertyChangeListener listener) {
-        try {
+        if (listener != null)
             this.changeListeners.add(listener);
-        } catch (NullPointerException npe) {
-            LOG.error("There is no listener object being handed over", npe.getMessage());
-        }
+
     }
 
     public void removePropertyChangeListener(final PropertyChangeListener listener) {
-        try {
+        if (listener != null)
             this.changeListeners.remove(listener);
-        } catch (NullPointerException npe) {
-            LOG.error("There is no listener object being handed over", npe.getMessage());
-        }
     }
 
     private void firePropertyChangeEvent(final PropertyChangeEvent event) {

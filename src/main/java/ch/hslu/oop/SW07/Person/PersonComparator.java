@@ -1,38 +1,43 @@
 package ch.hslu.oop.SW07.Person;
 
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
+
 import java.util.Comparator;
 import java.util.Objects;
 
 public final class PersonComparator implements Comparator<Person>, Comparable<PersonComparator> {
 
+    private static final Logger LOG = LoggerFactory.getLogger(PersonComparator.class);
+
     public static void main(String[] args) {
         // { hint... 26 letters in alphabet }
         Person p1 = new Person(2234, "Test", "Case");
-        Person p2 = new Person(2235, "alpha", "alpha");
-        Person p3 = new Person(2236, "alpha", "Alpha");
+
         Person p4 = new Person(2237, "Zésli", "zunder");
 
-        System.out.println("Comparator comparision: " + new PersonComparator().compare(p1, p4));
+        LOG.info("Comparator comparision: {}", new PersonComparator().compare(p1, p4));
 
-        System.out.println("Person compareTo() comparision: " + p4.compareTo(p1));
+        LOG.info("Person compareTo() comparision: {}", p4.compareTo(p1));
 
         PersonComparator pc1 = new PersonComparator();
         PersonComparator pc2 = new PersonComparator();
 
-        System.out.println(pc1.toString());
+        LOG.info(pc1.toString());
 
-        System.out.println(pc1.compareTo(pc2));
-        System.out.println(pc1.hashCode() == pc2.hashCode());
+        LOG.info("Compare: {}", pc1.compareTo(pc2));
+        LOG.info("Compare: {}", pc1.hashCode() == pc2.hashCode());
     }
 
     // ---------------------- Constructor ---------------------- //
     public PersonComparator() {
+        // default constructor
     }
 
     /**
      * Overide of the compare method of the Comparator interface for out
      * PersonComparator.
-     * 
+     *
      * @param person1 The first person objcect to compare.
      * @param person2 The decond person object to compare.
      * @return The difference of the alphabetical indices (lastname) as an integer.

@@ -73,19 +73,13 @@ public final class Engine implements Switchable {
     }
 
     public void addPropertyChangeListener(final PropertyChangeListener listener) {
-        try {
+        if (listener != null)
             this.changeListeners.add(listener);
-        } catch (NullPointerException npe) {
-            LOG.error("There is no listener object being handed over", npe.getMessage());
-        }
     }
 
     public void removePropertyChangeListener(final PropertyChangeListener listener) {
-        try {
+        if (listener != null)
             this.changeListeners.remove(listener);
-        } catch (NullPointerException npe) {
-            LOG.error("There is no listener object being handed over", npe.getMessage());
-        }
     }
 
     private void firePropertyChangeEvent(final PropertyChangeEvent event) {

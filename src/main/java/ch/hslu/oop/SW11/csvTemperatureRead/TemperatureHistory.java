@@ -21,7 +21,7 @@ public final class TemperatureHistory implements Comparable<TemperatureHistory> 
 
     private static final Logger LOG = LoggerFactory.getLogger(TemperatureHistory.class);
 
-    // Defaault Constructor
+    // Default Constructor
     public TemperatureHistory() {
         minTempCache = new TemperaturePoint(Temperature.createFromCelsius(Float.MAX_VALUE), LocalDateTime.now());
         maxTempCache = new TemperaturePoint(Temperature.createFromCelsius(Float.MIN_VALUE), LocalDateTime.now());
@@ -143,11 +143,8 @@ public final class TemperatureHistory implements Comparable<TemperatureHistory> 
     }
 
     public void removeTemperatureEventListener(final TemperatureEventListener listener) {
-        try {
+        if (listener != null)
             this.changeListeners.remove(listener);
-        } catch (NullPointerException npe) {
-            LOG.error("Listener object that's being handed over is null!", npe.getMessage());
-        }
     }
 
     public void fireTemperatureEvent(final TemperatureEvent temperatureEvent) {

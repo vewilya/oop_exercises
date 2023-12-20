@@ -28,11 +28,11 @@ public final class EngineControl {
         if (event.getPropertyName() == "EngineState" && event.getNewValue() == State.ON) {
             LOG.info("Control: Receiving event {}", event.getNewValue());
             this.engine.switchOn();
-        } else if (event.getPropertyName() == "EngineState" && event.getNewValue() == State.OFF) {
+        } else if (event.getPropertyName().equals("EngineState") && event.getNewValue() == State.OFF) {
             this.engine.switchOff();
-        } else if (event.getPropertyName() == "increaseRPM") {
+        } else if (event.getPropertyName().equals("increaseRPM")) {
             this.engine.increaseRPM();
-        } else if (event.getPropertyName() == "DecreaseRPM") {
+        } else if (event.getPropertyName().equals("DecreaseRPM")) {
             this.engine.decreaseRPM();
         }
     }
@@ -45,7 +45,6 @@ public final class EngineControl {
     @SuppressWarnings("unused")
     public static void main(final String[] args) {
         LOG.info("Applikation startet...");
-        // new EngineView();
         new EngineControl();
     }
 }

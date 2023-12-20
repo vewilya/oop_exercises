@@ -23,10 +23,7 @@ import org.slf4j.LoggerFactory;
  */
 public final class Subtyping {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(DemoApp.class);
-
-    /** Temperature Example. */
-    // private static final int TEMPERATURE = 1000;
+    private static final Logger LOG = LoggerFactory.getLogger(Subtyping.class);
 
     /**
      * Privater Konstruktor.
@@ -36,6 +33,7 @@ public final class Subtyping {
 
     /**
      * Main-Methode.
+     *
      * @param args Startargumente.
      */
     public static void main(final String[] args) {
@@ -46,21 +44,18 @@ public final class Subtyping {
         shape1.move(55, 77);
         shape2.move(45, 234);
 
-        // System.out.println(shape2.getDiameter());
-
         Circle shape3 = (Circle) shape2;
-        System.out.println(shape3.getDiameter());
+        LOG.info("shape 3 diameter is {}", shape3.getDiameter());
 
         // Oder einfacher
         int diameter = ((Circle) shape2).getDiameter();
-        System.out.println(diameter);
-        
-        
-        // Rectangle rect = new Rectangle(100, 100, 300, 20);
+        LOG.info("diameter : {}", diameter);
 
-        // int area = rect.getArea();
-        // int perimeter = rect.getPerimeter();
+        Rectangle rect = new Rectangle(100, 100, 300, 20);
 
-        // LOGGER.info("The Rectangle has an area of {} and a perimeter of {}", area, perimeter);
+        int area = rect.getArea();
+        int perimeter = rect.getPerimeter();
+
+        LOG.info("The Rectangle has an area of {} and a perimeter of {}", area, perimeter);
     }
 }

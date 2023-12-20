@@ -6,10 +6,13 @@ package ch.hslu.oop.SW05.Shape;
  * The <code>Shape</code> class acts as the base class for all shapes.
  */
 public abstract class Shape {
+    // ---------------------- PRIVATE -------------------------
+    private int x;
+    private int y;
 
     /**
      * Constructor taking in a given x and y coordinate.
-     * 
+     *
      * @param x x-coordinate
      * @param y y-coordinate
      */
@@ -20,7 +23,7 @@ public abstract class Shape {
 
     /**
      * Moves the shape to a new x and y coordinate.
-     * 
+     *
      * @param newX new x-coordinate
      * @param newY new y-coordinate
      */
@@ -31,19 +34,16 @@ public abstract class Shape {
 
     /**
      * Returns the perimeter of the shape as an integer.
-     * 
+     *
      * @return Perimeter of the shape as an integer
      */
     public abstract int getPerimeter();
 
     /**
      * Returns the area of the shape as an integer.
-     * 
+     *
      * @return Area of the shape as an integer
      */
     public abstract int getArea();
 
-    // ---------------------- PRIVATE -------------------------
-    private int x;
-    private int y;
 }

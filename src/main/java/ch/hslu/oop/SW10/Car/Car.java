@@ -17,6 +17,7 @@ public final class Car implements Switchable {
     private static final Logger LOG = LoggerFactory.getLogger(Car.class);
 
     private final class EnginePropertyListener implements PropertyChangeListener {
+
         @Override
         public void propertyChange(PropertyChangeEvent engineEvent) {
             handleEngineEvent(engineEvent);
@@ -103,14 +104,14 @@ public final class Car implements Switchable {
     // }
 
     private final void handleEngineEvent(PropertyChangeEvent event) {
-        if (this.carState == State.OFF)
+        if (this.carState == State.OFF && event.getNewValue() == State.ON)
             this.engine.switchOn();
         else
             this.engine.switchOff();
     }
 
     private final void handleLightsEvent(PropertyChangeEvent event) {
-        if (this.carState == State.OFF)
+        if (this.carState == State.OFF && event.getNewValue() == State.ON)
             this.lights.switchOn();
         else
             this.lights.switchOff();

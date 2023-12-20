@@ -16,21 +16,12 @@
 
 package ch.hslu.oop.SW12.Temperature;
 
-import java.beans.PropertyChangeListener;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Scanner;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-// TODO Checke BinärFile
 /**
  * Application
  */
