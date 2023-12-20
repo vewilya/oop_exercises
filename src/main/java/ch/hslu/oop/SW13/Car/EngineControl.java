@@ -22,29 +22,18 @@ public final class EngineControl {
 
         this.engineView.setVisible(true);
         this.engineView.addPropertyChangeListener(this::handleViewEvent);
-        this.engine.addPropertyChangeListener(this::handleEngineEvent);
     }
 
     private final void handleViewEvent(PropertyChangeEvent event) {
         if (event.getPropertyName() == "EngineState" && event.getNewValue() == State.ON) {
-            System.out.println("Engine is on!");
+            LOG.info("Control: Receiving event {}", event.getNewValue());
             this.engine.switchOn();
         } else if (event.getPropertyName() == "EngineState" && event.getNewValue() == State.OFF) {
-            System.out.println("Engine is off!");
             this.engine.switchOff();
         } else if (event.getPropertyName() == "increaseRPM") {
-            System.out.println("Increase RPM!");
             this.engine.increaseRPM();
         } else if (event.getPropertyName() == "DecreaseRPM") {
-            System.out.println("Decrease RPM!");
             this.engine.decreaseRPM();
-        }
-    }
-
-    // TODO Implement Engine listener on EngineView
-    private final void handleEngineEvent(PropertyChangeEvent event) {
-        if (event.getPropertyName() == "EngineState" && event.getNewValue() == State.ON) {
-            // this.engineView.updateUI();
         }
     }
 

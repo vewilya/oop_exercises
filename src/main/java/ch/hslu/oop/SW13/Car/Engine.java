@@ -27,14 +27,14 @@ public final class Engine implements Switchable {
 
     @Override
     public void switchOn() {
-        if (isSwitchedOff()) {
+        if (this.engineState == State.OFF) {
 
             // Muss hier stehen und nicht nach der Versendung der Events!
             this.engineState = State.ON;
             this.rpm = 100;
 
             // Fire Event
-            this.firePropertyChangeEvent(new PropertyChangeEvent(this, "Engine State", State.OFF, State.ON));
+            this.firePropertyChangeEvent(new PropertyChangeEvent(this, "EngineState", State.OFF, State.ON));
 
             LOG.info("Engine switched on. RPM is: {}", this.rpm);
         }
@@ -42,7 +42,7 @@ public final class Engine implements Switchable {
 
     @Override
     public void switchOff() {
-        if (isSwitchedOn()) {
+        if (this.engineState == State.ON) {
 
             this.engineState = State.OFF;
             this.rpm = 0;
@@ -55,13 +55,23 @@ public final class Engine implements Switchable {
     }
 
     public final void increaseRPM() {
+        final int oldRPM = this.rpm;
         this.rpm += 100;
         LOG.info("RPM increased to: {}", this.rpm);
+        LOG.info("Old RPM is: {}", oldRPM);
+        this.firePropertyChangeEvent(new PropertyChangeEvent(this, "rpmIncrease", oldRPM, this.rpm));
     }
 
     public final void decreaseRPM() {
+        final int oldRPM = this.rpm;
         this.rpm -= 100;
         LOG.info("RPM decreased to: {}", this.rpm);
+        LOG.info("Old RPM is: {}", oldRPM);
+        this.firePropertyChangeEvent(new PropertyChangeEvent(this, "rpmDecrease", oldRPM, this.rpm));
+
+        if (this.rpm == 0) {
+            this.switchOff();
+        }
     }
 
     @Override

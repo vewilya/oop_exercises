@@ -28,6 +28,8 @@ public class EngineView extends JFrame implements ActionListener {
 
     private static final Logger LOG = LoggerFactory.getLogger(EngineView.class);
     private final List<PropertyChangeListener> viewListeners = new ArrayList<>();
+
+    // Engine
     private final Engine engine;
 
     private final JLabel labelState = new JLabel("Engine is OFF");
@@ -37,10 +39,15 @@ public class EngineView extends JFrame implements ActionListener {
     private final JButton increaseRPM = new JButton("Increase RPM");
     private final JLabel labelRPM = new JLabel("RPM: 0");
     private final JButton decreaseRPM = new JButton("Decrease RPM");
-
     private final ImageIcon icon;
 
     private int counter = 0;
+
+    public enum ViewState {
+        ON, OFF, INCREASING, DECREASING
+    }
+
+    private ViewState viewState = ViewState.OFF;
 
     /**
      * Konstruktor.
@@ -49,7 +56,11 @@ public class EngineView extends JFrame implements ActionListener {
         super("EngineView");
 
         this.engine = engine;
+        this.engine.addPropertyChangeListener(this::handleEngineEvent);
 
+        /**
+         * UI Setup
+         */
         this.buttonOn.addActionListener(this);
         this.buttonOff.addActionListener(this);
         this.increaseRPM.addActionListener(this);
@@ -91,74 +102,97 @@ public class EngineView extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(final ActionEvent event) {
         if (event.getSource() == buttonOn) {
-            this.labelState.setText("Engine is ON.");
-            this.labelState.setBackground(Color.GREEN);
+            LOG.info("ActionEvent von ON-Button empfangen.");
 
-            this.buttonOff.setEnabled(true);
-            this.buttonOn.setEnabled(false);
-
+            // Fire Event to Controller -> Engine
             this.firePropertyChangeEvent(new PropertyChangeEvent(this, "EngineState", State.OFF, State.ON));
-            updateRPM();
-            runErrorCycle();
-            LOG.info("ActionEvent von ON-Button empfangen und verarbeitet.");
+
+            // Check for Engine Event that set the correct ViewState
+            if (viewState == ViewState.ON) {
+                this.labelState.setText("Engine is ON.");
+                this.labelState.setBackground(Color.GREEN);
+
+                this.buttonOff.setEnabled(true);
+                this.buttonOn.setEnabled(false);
+
+                updateRPMLabel();
+                runErrorCycle();
+
+                LOG.info("View State correct... Engine is ON.");
+            }
         }
 
         if (event.getSource() == buttonOff) {
-            labelState.setText("Engine is OFF");
-            labelState.setBackground(Color.GRAY);
+            LOG.info("ActionEvent von OFF-Button empfangen.");
 
-            this.buttonOff.setEnabled(false);
-            this.buttonOn.setEnabled(true);
-            this.decreaseRPM.setEnabled(false);
-
+            // Fire Event to Controller -> Engine
             this.firePropertyChangeEvent(new PropertyChangeEvent(this, "EngineState", State.ON, State.OFF));
-            updateRPM();
-            LOG.info("ActionEvent von ON-Button empfangen und verarbeitet.");
+
+            // Check for Engine Event that set the correct ViewState
+            if (viewState == ViewState.OFF) {
+                labelState.setText("Engine is OFF");
+                labelState.setBackground(Color.GRAY);
+                this.buttonOff.setEnabled(false);
+                this.buttonOn.setEnabled(true);
+                this.decreaseRPM.setEnabled(false);
+
+                updateRPMLabel();
+                LOG.info("View State correct... Engine is OFF.");
+            }
         }
 
         if (event.getSource() == increaseRPM) {
             LOG.info("Increase RPM-Button pressed.");
 
-            if (this.engine.getCurrentRpm() == 0) {
-                this.labelState.setText("Engine is ON");
-                this.labelState.setBackground(Color.GREEN);
-                this.decreaseRPM.setEnabled(true);
-                this.buttonOff.setEnabled(true);
+            if (this.viewState == ViewState.OFF) {
 
                 this.firePropertyChangeEvent(new PropertyChangeEvent(this, "EngineState", State.OFF, State.ON));
+
+                if (this.viewState == ViewState.ON) {
+                    this.labelState.setText("Engine is ON");
+                    this.labelState.setBackground(Color.GREEN);
+                    this.decreaseRPM.setEnabled(true);
+                    this.buttonOff.setEnabled(true);
+                }
+
             } else {
-                this.decreaseRPM.setEnabled(true);
                 this.firePropertyChangeEvent(new PropertyChangeEvent(this, "increaseRPM",
                         this.labelRPM.getText(), Integer.valueOf(this.engine.getCurrentRpm() + 100)));
+
+                if (this.viewState == ViewState.INCREASING) {
+                    this.decreaseRPM.setEnabled(true);
+                }
 
                 if (this.engine.getCurrentRpm() > 2000) {
                     rpmError();
                 }
             }
 
-            updateRPM();
+            updateRPMLabel();
         }
 
         if (event.getSource() == decreaseRPM) {
             LOG.info("Decrease RPM-Button pressed.");
 
-            if (this.engine.getCurrentRpm() > 0) {
+            if (this.viewState == ViewState.ON || this.viewState == ViewState.INCREASING
+                    || this.viewState == ViewState.DECREASING) {
                 this.firePropertyChangeEvent(new PropertyChangeEvent(this, "DecreaseRPM", this.labelRPM.getText(),
                         Integer.valueOf(this.engine.getCurrentRpm() - 100)));
 
             }
 
-            if (this.engine.getCurrentRpm() == 0) {
+            if (this.viewState == ViewState.OFF) {
                 labelState.setText("The switch is OFF.");
                 labelState.setBackground(Color.GRAY);
 
                 this.decreaseRPM.setEnabled(false);
                 this.buttonOff.setEnabled(false);
 
-                this.firePropertyChangeEvent(new PropertyChangeEvent(this, "EngineState", State.ON, State.OFF));
+                this.firePropertyChangeEvent(new PropertyChangeEvent(this, "EngineState",
+                        State.ON, State.OFF));
             }
 
-            updateRPM();
+            updateRPMLabel();
         }
     }
 
@@ -186,7 +220,30 @@ public class EngineView extends JFrame implements ActionListener {
         }
     }
 
-    private final void updateRPM() {
+    private final void handleEngineEvent(PropertyChangeEvent event) {
+
+        if (event.getPropertyName() == "EngineState" && event.getNewValue() == State.ON) {
+            LOG.info("View: Receiving Engine Event {}", event.getNewValue());
+            this.viewState = ViewState.ON;
+        }
+
+        if (event.getPropertyName() == "EngineState" && event.getNewValue() == State.OFF) {
+            LOG.info("View: Receiving Engine Event {}", event.getNewValue());
+            this.viewState = ViewState.OFF;
+        }
+
+        if (event.getPropertyName() == "rpmIncrease") {
+            LOG.info("View: Receiving rpmIncrease Event {}", event.getNewValue());
+            this.viewState = ViewState.INCREASING;
+        }
+
+        if (event.getPropertyName() == "rpmDecrease") {
+            LOG.info("View: Receiving rpmDecrease Event {}", event.getNewValue());
+            this.viewState = ViewState.DECREASING;
+        }
+    }
+
+    private final void updateRPMLabel() {
         this.labelRPM.setText("RPM: " + this.engine.getCurrentRpm());
     }
 
@@ -209,7 +266,7 @@ public class EngineView extends JFrame implements ActionListener {
             this.firePropertyChangeEvent(new PropertyChangeEvent(this, "DecreaseRPM", this.labelRPM.getText(),
                     Integer.valueOf(this.engine.getCurrentRpm() - 100)));
 
-            updateRPM();
+            updateRPMLabel();
 
             LOG.info("Reducing RPM!");
         }
