@@ -18,7 +18,6 @@ package ch.hslu.oop.SW05.Switchable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 /**
  * Demo-Applikation für {@link ch.hslu.oop.SW05.Switchable.Car}-Klasse.
  */
@@ -37,10 +36,10 @@ public final class DemoApp {
 
     /**
      * Main-Methode.
+     * 
      * @param args Startargumente.
      */
 
-    
     public static void main(final String[] args) {
         Car car = new Car();
 
@@ -54,7 +53,7 @@ public final class DemoApp {
 
         for (int i = 0; i < 100; i++) {
             engine.switchOff();
-            engine.switchOn(); 
+            engine.switchOn();
         }
 
         long switchCount = engine.getSwitchCount();

@@ -2,11 +2,14 @@ package ch.hslu.oop.SW05.Switchable;
 
 /**
  * The <code>Playable</code> interface represents a playable component.
- * <p>It provides methods to play and stop the component as well as methods to check the current state of the player component.
+ * <p>
+ * It provides methods to play and stop the component as well as methods to
+ * check the current state of the player component.
+ * 
  * @author Urs Bollhalder
  * @version 1.0
  * @see ch.hslu.oop.SW05.Switchable
- * 
+ *
  */
 public interface Playable {
     /**
@@ -37,6 +40,7 @@ public interface Playable {
 
     /**
      * Returns the stopped state of the component.
+     * 
      * @return true if component is stopped.
      */
     boolean isStopped();

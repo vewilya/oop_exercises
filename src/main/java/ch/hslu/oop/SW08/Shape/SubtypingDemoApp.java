@@ -36,6 +36,7 @@ public final class SubtypingDemoApp {
 
     /**
      * Main-Methode.
+     * 
      * @param args Startargumente.
      */
     public static void main(final String[] args) {
@@ -54,13 +55,13 @@ public final class SubtypingDemoApp {
         // Oder einfacher
         int diameter = ((Circle) shape2).getDiameter();
         System.out.println(diameter);
-        
-        
+
         // Rectangle rect = new Rectangle(100, 100, 300, 20);
 
         // int area = rect.getArea();
         // int perimeter = rect.getPerimeter();
 
-        // LOGGER.info("The Rectangle has an area of {} and a perimeter of {}", area, perimeter);
+        // LOGGER.info("The Rectangle has an area of {} and a perimeter of {}", area,
+        // perimeter);
     }
 }

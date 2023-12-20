@@ -1,7 +1,7 @@
 package ch.hslu.oop.SW12.Car;
 
 public enum State {
-    ON("is switched on"), OFF("is switched off"), FAILURE("is failing"); 
+    ON("is switched on"), OFF("is switched off"), FAILURE("is failing");
 
     private final String stateDescription;
 

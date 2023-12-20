@@ -36,6 +36,7 @@ public final class DemoApp {
 
     /**
      * Main-Methode.
+     * 
      * @param args Startargumente.
      */
     public static void main(final String[] args) {
@@ -43,7 +44,6 @@ public final class DemoApp {
         String state = mercury.getAggregateState(TEMPERATURE);
         float bP = mercury.getBolilingPoint();
         System.out.println(bP);
-        
 
         LOGGER.info("State of Mercury at {}°C is {}", TEMPERATURE, state);
     }

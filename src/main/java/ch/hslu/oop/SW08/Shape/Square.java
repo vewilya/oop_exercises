@@ -1,7 +1,9 @@
 package ch.hslu.oop.SW08.Shape;
 
 /**
- * The <code>Square</code> class represents a square with a given x and y coordinate and a side length.
+ * The <code>Square</code> class represents a square with a given x and y
+ * coordinate and a side length.
+ * 
  * @author Urs Bollhalder
  * @version 1.0
  * @see Rectangle
@@ -11,6 +13,7 @@ package ch.hslu.oop.SW08.Shape;
 public final class Square extends Shape {
     /**
      * This main method creates a new Square object and tests its functionality.
+     * 
      * @param args main arguments
      */
     public static void main(String[] args) {
@@ -22,19 +25,21 @@ public final class Square extends Shape {
 
     /**
      * Constructor for the Square class.
-     * @param x x-coordinate of the square
-     * @param y y-coordinate of the square
+     * 
+     * @param x    x-coordinate of the square
+     * @param y    y-coordinate of the square
      * @param side length of the side of the square
      */
-    public Square (final int x, final int y, final int side) {
+    public Square(final int x, final int y, final int side) {
         super(x, y);
 
-        // Rectangle just used for area, perimeter calcs and dimension changes. Private to square and 
+        // Rectangle just used for area, perimeter calcs and dimension changes. Private
+        // to square and
         // stays at 0,0.
         this.rectangle = new Rectangle(0, 0, side, side);
     }
-    
-    @Override 
+
+    @Override
     public int getArea() {
         return this.rectangle.getArea();
     }
@@ -46,6 +51,7 @@ public final class Square extends Shape {
 
     /**
      * Changes the dimension of the square.
+     * 
      * @param newSide new side length of the square
      */
     public void changeDimension(int newSide) {

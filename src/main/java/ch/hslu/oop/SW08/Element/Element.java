@@ -8,12 +8,9 @@ import ch.hslu.oop.SW08.Temperature.Temperature;
 /**
  * The half-abstract <code>Element</code> class represents an element with a
  * given name, boiling and evaporation point.
- * 
+ *
  * @author Urs Bollhalder
  * @version 0.0.1 from 2023-13-11
- * @see ch.hslu.oop.8.Element.Lead
- * @see ch.hslu.oop.8.Element.Mercury
- * @see ch.hslu.oop.8.Element.Nitrogen
  */
 public abstract class Element implements Comparable<Element> {
 
@@ -25,7 +22,7 @@ public abstract class Element implements Comparable<Element> {
     // private final float meltingPoint;
     // private final float evaporationPoint;
     private final EnumMap<AggregatePoints, Float> temperaturePointMap;
-    
+
     private enum AggregatePoints {
         MELTING_POINT, EVAPORATION_POINT;
     }
@@ -33,6 +30,7 @@ public abstract class Element implements Comparable<Element> {
     // -------------------- Constructor -------------------- //
     /**
      * Constructor taking in a name, boiling and evaporation point.
+     *
      * @param name             The name of the element.
      * @param meltingPoint     The melting point of the element.
      * @param evaporationPoint The evaporation point of the element.
@@ -54,7 +52,7 @@ public abstract class Element implements Comparable<Element> {
     /**
      * Returns the aggregate state of the element for a given temperature value in
      * Celsius.
-     * 
+     *
      * @param temperature The temperature to check.
      * @return The string for aggregate state of the element
      */
@@ -71,6 +69,7 @@ public abstract class Element implements Comparable<Element> {
 
     /**
      * Returns the aggregate state of the element for a given temperature object.
+     *
      * @param temperature The temperature object to check.
      * @return The string for aggregate state of the element
      */
@@ -89,7 +88,7 @@ public abstract class Element implements Comparable<Element> {
 
     /**
      * Returns the evaporation point of the element.
-     * 
+     *
      * @return The evaporation point of the element
      */
     public float getEvaporationPoint() {
@@ -98,7 +97,7 @@ public abstract class Element implements Comparable<Element> {
 
     /**
      * Returns the boiling point of the element.
-     * 
+     *
      * @return The boiling point of the element.
      */
     public float getBoilingPoint() {
@@ -107,7 +106,7 @@ public abstract class Element implements Comparable<Element> {
 
     /**
      * Returns the class name of the element.
-     * 
+     *
      * @return The class name of the element.
      */
     public String getElementClassification() {
@@ -116,7 +115,7 @@ public abstract class Element implements Comparable<Element> {
 
     /**
      * Returns atomic mass of the element as an integer.
-     * 
+     *
      * @return The atomic mass of the element.
      */
     public int getAtomicMass() {

@@ -2,6 +2,7 @@ package ch.hslu.oop.SW04.Line;
 
 /**
  * The Point class represents a point in a two-dimensional coordinate system.
+ * 
  * @author Urs Bollhalder
  * @version 1.0
  * @see ch.hslu.oop.SW04.Line.Line
@@ -22,8 +23,7 @@ public class Point {
      * @param x the x-coordinate of the point
      * @param y the y-coordinate of the point
      */
-    public Point(int x, int y) 
-    {
+    public Point(int x, int y) {
         this.x = x;
         this.y = y;
     }
@@ -33,8 +33,7 @@ public class Point {
      *
      * @return the x-coordinate of the point
      */
-    public int getX() 
-    {
+    public int getX() {
         return x;
     }
 
@@ -43,7 +42,7 @@ public class Point {
      *
      * @return the y-coordinate of the point
      */
-    public int getY(){
+    public int getY() {
         return y;
     }
 
@@ -93,30 +92,21 @@ public class Point {
      * @param y the y-coordinate of the point
      * @return the quadrant of the point in the coordinate system
      */
-    public int getQuadrant(int x, int y)
-    {   
+    public int getQuadrant(int x, int y) {
         int quadrant = 0;
 
         if (x >= 0) {
-            if (y >= 0) 
-            {
+            if (y >= 0) {
                 quadrant = 1;
-            } 
-            else 
-            {
+            } else {
                 quadrant = 4;
             }
-        }
-        else 
-        {
-            if (y >= 0) 
-            {
+        } else {
+            if (y >= 0) {
                 quadrant = 2;
-            } 
-            else 
-            {
+            } else {
                 quadrant = 3;
-            } 
+            }
         }
 
         return quadrant;

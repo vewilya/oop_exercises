@@ -53,7 +53,7 @@ public final class TemperatureHistory implements Comparable<TemperatureHistory> 
         if (temperaturePoint.compareTo(minTempCache) == -1) {
 
             minTempCache = TemperaturePoint.createFromTemperaturePoint(temperaturePoint);
-            
+
             float newMinTemperature = temperaturePoint.getTemperature().getTemperatureCelsius();
 
             fireTemperatureEvent(new TemperatureEvent(this,
@@ -165,8 +165,10 @@ public final class TemperatureHistory implements Comparable<TemperatureHistory> 
     @Override
     public String toString() {
         return "Temperature History - Number of Temperature Points: " + this.getCount() + ", \nMax Temperature: "
-                + this.getMaxTemperature() + " at timestamp: " + this.getMaxTemperature().getLDT() + ", \nMin Temperature: " + this.getMinTemperature()
-                + " at timestamp: " + this.getMinTemperature().getLDT() + ", \nAverage Temperature: " + this.getAverageTemperature() + " at timestamp: " + this.getAverageTemperature().getLDT();
+                + this.getMaxTemperature() + " at timestamp: " + this.getMaxTemperature().getLDT()
+                + ", \nMin Temperature: " + this.getMinTemperature()
+                + " at timestamp: " + this.getMinTemperature().getLDT() + ", \nAverage Temperature: "
+                + this.getAverageTemperature() + " at timestamp: " + this.getAverageTemperature().getLDT();
     }
 
     @Override

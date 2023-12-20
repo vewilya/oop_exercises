@@ -20,8 +20,8 @@ public final class Category implements Named {
         this.categoryName = name;
     }
 
-    // ---------------------- Private ---------------------- 
+    // ---------------------- Private ----------------------
 
     String categoryName;
-    
+
 }

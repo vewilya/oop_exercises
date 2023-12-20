@@ -1,7 +1,9 @@
 package ch.hslu.oop.SW06.Element;
 
 /**
- * The half-abstract <code>Element</code> class represents an element with a given name, boiling and evaporation point.
+ * The half-abstract <code>Element</code> class represents an element with a
+ * given name, boiling and evaporation point.
+ * 
  * @author Urs Bollhalder
  * @version 1.0 from 2023-19-10
  * @see ch.hslu.oop.SW05.Element.Lead
@@ -12,9 +14,10 @@ public abstract class Element {
 
     /**
      * Constructor taking in a name, boiling and evaporation point.
-     * @param name The name of the element.
+     * 
+     * @param name             The name of the element.
      * @param evaporationPoint The evaporation point of the element.
-     * @param boilingPoint The boiling point of the element.
+     * @param boilingPoint     The boiling point of the element.
      */
     protected Element(String name, float boilingPoint, float evaporationPoint) {
         this.name = name;
@@ -23,7 +26,9 @@ public abstract class Element {
     }
 
     /**
-     * Returns the aggregate state of the element for a given temperature value in Celsius.
+     * Returns the aggregate state of the element for a given temperature value in
+     * Celsius.
+     * 
      * @param temperature The temperature to check.
      * @return The string for aggregate state of the element
      */
@@ -32,7 +37,7 @@ public abstract class Element {
             return "solid";
         else if (temperature >= this.boilingPoint && temperature < this.evaporationPoint)
             return "liquid";
-        else 
+        else
             return "gaseous";
     }
 
@@ -44,7 +49,7 @@ public abstract class Element {
             return "solid";
         else if (elementTemperature >= this.boilingPoint && elementTemperature < this.evaporationPoint)
             return "liquid";
-        else 
+        else
             return "gaseous";
     }
 
@@ -59,6 +64,7 @@ public abstract class Element {
     public String toString() {
         return this.name;
     }
+
     // -------------------- PRIVATE --------------------
     /**
      * Name of the element.

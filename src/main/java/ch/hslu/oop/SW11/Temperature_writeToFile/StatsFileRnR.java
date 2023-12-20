@@ -18,7 +18,7 @@ public final class StatsFileRnR {
 
     public final void printStatstFile(final String file, final TemperatureHistory tempHis) {
 
-        String basePath = "oop_exercises/src/main/java/ch/hslu/oop/SW11/Temperature_writeToFile/tmp/";
+        String basePath = "src/main/java/ch/hslu/oop/SW11/Temperature_writeToFile/tmp/";
         String filePath = basePath + file;
 
         // List<TemperaturePoint> tList = tempHis.getTemperatureList();
@@ -43,7 +43,7 @@ public final class StatsFileRnR {
     }
 
     public final void readStatsFile(String file) {
-        String basePath = "oop_exercises/src/main/java/ch/hslu/oop/SW11/Temperature_writeToFile/tmp/";
+        String basePath = "src/main/java/ch/hslu/oop/SW11/Temperature_writeToFile/tmp/";
         String filePath = basePath + file;
 
         try (DataInputStream dis = new DataInputStream(new FileInputStream(filePath))) {
@@ -62,7 +62,7 @@ public final class StatsFileRnR {
     }
 
     public final void deleteStatsFile() {
-        File f = new File("oop_exercises/src/main/java/ch/hslu/oop/SW11/Temperature/tmp/temperatureStats.bin");
+        File f = new File("src/main/java/ch/hslu/oop/SW11/Temperature_writeToFile/tmp/temperatureStats.bin");
 
         if (f.exists())
             f.delete();

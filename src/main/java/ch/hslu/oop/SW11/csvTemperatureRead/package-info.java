@@ -18,4 +18,3 @@
  * Temperature-Package.
  */
 package ch.hslu.oop.SW11.csvTemperatureRead;
-

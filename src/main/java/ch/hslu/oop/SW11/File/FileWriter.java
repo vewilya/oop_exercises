@@ -40,7 +40,7 @@ public final class FileWriter {
     }
 
     private static final Logger LOG = LoggerFactory.getLogger(FileWriter.class);
-    private static String basePath = "oop_exercises/src/main/java/ch/hslu/oop/SW11/File/tmp/";
+    private static String basePath = "src/main/java/ch/hslu/oop/SW11/File/tmp/";
 
     public static void main(String[] args) {
 
@@ -87,6 +87,7 @@ public final class FileWriter {
 
     /**
      * Method to read a text file.
+     * 
      * @param file File path to read from
      */
     public void readTextFile(final String file) {
@@ -124,20 +125,18 @@ public final class FileWriter {
         }
     }
 
-
-
     public void readIntFile(final String file) {
         if (new File(file).exists()) {
             try (DataInputStream dis = new DataInputStream(new FileInputStream(file))) {
-                
+
                 // Reverse order reading out
-                int integerNumber = dis.read();         
+                int integerNumber = dis.read();
                 System.out.println(integerNumber);
                 int b = dis.readInt();
                 System.out.println(b);
                 double d = dis.readDouble();
                 System.out.println(d);
-                
+
             } catch (IOException ioe) {
                 LOG.error(ioe.getMessage(), ioe);
             }

@@ -1,7 +1,9 @@
 package ch.hslu.oop.SW05.Switchable;
 
 /**
- * The <code>Engine</code>> class implements an engine that can be swithced on and off.
+ * The <code>Engine</code>> class implements an engine that can be swithced on
+ * and off.
+ * 
  * @author Urs Bollhalder
  * @version 1.0
  * @see ch.hslu.oop.SW05.Switchable.Car
@@ -12,32 +14,34 @@ public final class Engine implements CountingSwitchable {
 
     /**
      * This main method creates a new Engine object and tests its functionality.
+     * 
      * @param args
      */
     // public static void main(String[] args) {
-    //     Engine engine = new Engine();
-    //     System.out.println(engine.isSwitchedOn());
-    //     engine.switchOn();
-    //     System.out.println(engine.isSwitchedOn());
-    //     engine.switchOff();
+    // Engine engine = new Engine();
+    // System.out.println(engine.isSwitchedOn());
+    // engine.switchOn();
+    // System.out.println(engine.isSwitchedOn());
+    // engine.switchOff();
 
-    //     for (int i = 0; i < 100; i++) {
-    //         engine.switchOff();
-    //         engine.switchOn(); 
-    //     }
-    //     System.out.println(engine.getSwitchCount());
+    // for (int i = 0; i < 100; i++) {
+    // engine.switchOff();
+    // engine.switchOn();
+    // }
+    // System.out.println(engine.getSwitchCount());
     // }
     /**
      * Default constructor for the Engine class.
      */
-    public Engine() {}
+    public Engine() {
+    }
 
     /**
      * Constructor that takes in a parameter for the current motor state.
+     * 
      * @param isEngineSwitchedOn The initial state of the engine.
      */
-    public Engine(boolean isEngineSwitchedOn)
-    {
+    public Engine(boolean isEngineSwitchedOn) {
         this.isEngineSwitchedOn = isEngineSwitchedOn;
         this.rpm = 100;
     }
@@ -66,6 +70,7 @@ public final class Engine implements CountingSwitchable {
 
     /**
      * Returns true if the engine is switched on, false otherwise.
+     * 
      * @return The current state of the engine.
      */
     @Override
@@ -75,6 +80,7 @@ public final class Engine implements CountingSwitchable {
 
     /**
      * Returns true if the engine is switched off, false otherwise.
+     * 
      * @return The current state of the engine.
      */
     @Override
@@ -83,13 +89,14 @@ public final class Engine implements CountingSwitchable {
         return !this.isSwitchedOn();
     }
 
-    @Override 
+    @Override
     public long getSwitchCount() {
         return this.switchCount;
     }
 
     /**
      * Returns the current RPM of the engine.
+     * 
      * @return The current RPM of the engine.
      */
     public int getCurrentRpm() {

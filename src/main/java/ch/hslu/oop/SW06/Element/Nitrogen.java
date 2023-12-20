@@ -1,9 +1,11 @@
 package ch.hslu.oop.SW06.Element;
 
 /**
- * The <code>Nitrogen</code> class represents the element Nitrogen with a given name, boiling and evaporation point.
+ * The <code>Nitrogen</code> class represents the element Nitrogen with a given
+ * name, boiling and evaporation point.
  * The <code>Nitrogen</code> class extends the <code>Element</code> class.
-* @author Urs Bollhalder
+ * 
+ * @author Urs Bollhalder
  * @version 1.0
  * @see ch.hslu.oop.SW05.Element.Element
  * @see ch.hslu.oop.SW05.Element.Mercury
@@ -12,6 +14,7 @@ package ch.hslu.oop.SW06.Element;
 public class Nitrogen extends Element {
     /**
      * Main method to test the class.
+     * 
      * @param args main arguments
      */
     public static void main(String[] args) {
@@ -30,14 +33,13 @@ public class Nitrogen extends Element {
 
     /**
      * Returns name of the element with a custom warning flag.
+     * 
      * @return The name of the element with a custom warning flag.
      */
     @Override
     public String toString() {
         return super.toString() + " TOXIC";
     }
-
-
 
     // -------------------- PRIVATE --------------------
 

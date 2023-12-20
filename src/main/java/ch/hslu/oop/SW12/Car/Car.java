@@ -13,7 +13,7 @@ public final class Car implements Switchable {
     private State carState = State.OFF;
     private Engine engine;
     private Lights lights;
-    
+
     private static final Logger LOG = LoggerFactory.getLogger(Car.class);
 
     public Car() {
@@ -31,38 +31,36 @@ public final class Car implements Switchable {
     @Override
     public void switchOn() {
         if (this.carState == State.OFF) {
-            
+
             engine.switchOn();
             lights.switchOn();
 
             this.carState = State.ON;
         }
 
-        LOG.info("Car state is {}, enigne state is {} and lights state is {}", this.carState, this.engine.isSwitchedOn(), this.lights.isSwitchedOn());
+        LOG.info("Car state is {}, enigne state is {} and lights state is {}", this.carState,
+                this.engine.isSwitchedOn(), this.lights.isSwitchedOn());
     }
 
-   
     @Override
     public void switchOff() {
         if (this.carState == State.ON) {
-            
+
             this.carState = State.OFF;
 
             engine.switchOff();
             lights.switchOff();
 
-            
         }
-            
-        LOG.info("Car state is {}, enigne state is {} and lights state is {}", this.carState, this.engine.isSwitchedOn(), this.lights.isSwitchedOn());
-    }
 
+        LOG.info("Car state is {}, enigne state is {} and lights state is {}", this.carState,
+                this.engine.isSwitchedOn(), this.lights.isSwitchedOn());
+    }
 
     @Override
     public boolean isSwitchedOn() {
         return this.carState.equals(State.ON);
     }
-
 
     @Override
     public boolean isSwitchedOff() {
@@ -70,11 +68,10 @@ public final class Car implements Switchable {
     }
 
     // ------------------------------ Engine ------------------------------
-    
+
     public int getCarEngineRpm() {
         return engine.getCurrentRpm();
     }
-
 
     // --------------- toString() ---------------- //
     @Override
@@ -85,14 +82,14 @@ public final class Car implements Switchable {
     private final void handleEngineEvent(PropertyChangeEvent event) {
         if (this.carState == State.OFF)
             this.engine.switchOn();
-        else 
+        else
             this.engine.switchOff();
-    } 
+    }
 
     private final void handleLightsEvent(PropertyChangeEvent event) {
         if (this.carState == State.OFF)
             this.lights.switchOn();
-        else 
+        else
             this.lights.switchOff();
     }
 }

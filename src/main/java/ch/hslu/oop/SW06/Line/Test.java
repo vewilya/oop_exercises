@@ -5,7 +5,6 @@ public class Test {
         float a = 200000.005f;
 
         System.out.println(a + 0.002f);
-        
 
     }
 }

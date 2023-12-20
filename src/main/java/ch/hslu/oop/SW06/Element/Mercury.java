@@ -1,8 +1,10 @@
 package ch.hslu.oop.SW06.Element;
 
 /**
- * The <code>Mercury</code> class represents the element Mercury with a given name, boiling point and evaporation point.
+ * The <code>Mercury</code> class represents the element Mercury with a given
+ * name, boiling point and evaporation point.
  * The <code>Mercury</code> class extends the <code>Element</code> class.
+ * 
  * @author Urs Bollhalder
  * @version 1.0
  * @see ch.hslu.oop.SW05.Element.Element
@@ -13,6 +15,7 @@ public class Mercury extends Element {
 
     /**
      * Main method to test the class.
+     * 
      * @param args main arguments
      */
     public static void main(String[] args) {
@@ -28,5 +31,5 @@ public class Mercury extends Element {
     public Mercury() {
         super("Mercury", 357.0f, -38.83f);
     }
-    
+
 }

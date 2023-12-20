@@ -18,7 +18,6 @@ package ch.hslu.oop.SW04.Line;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 /**
  * Demo-Applikation für {@link ch.hslu.oop.SW04.Line.Point}-Klasse.
  */
@@ -37,10 +36,10 @@ public final class DemoApp {
 
     /**
      * Main-Methode.
+     * 
      * @param args Startargumente.
      */
 
-    
     public static void main(final String[] args) {
         Line line = new Line(10, 20, 110, 120);
 

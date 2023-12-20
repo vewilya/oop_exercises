@@ -18,4 +18,3 @@
  * Calculator-Package.
  */
 package ch.hslu.oop.SW06.Calculator;
-

@@ -6,13 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class Lights implements Switchable {
-    
+
     // ------------------ Attributes -------------------- //
     private State lightsState = State.OFF;
 
     private final List<PropertyChangeListener> changeListeners = new ArrayList<>();
 
-    public Lights() { }
+    public Lights() {
+    }
 
     @Override
     public void switchOn() {
@@ -30,12 +31,10 @@ public final class Lights implements Switchable {
         }
     }
 
-
     @Override
     public boolean isSwitchedOn() {
         return this.lightsState.equals(State.ON);
     }
-
 
     @Override
     public boolean isSwitchedOff() {

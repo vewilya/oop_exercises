@@ -2,9 +2,9 @@ package ch.hslu.oop.SW07.Point;
 
 import java.util.Objects;
 
-
 /**
  * The Point class represents a point in a two-dimensional coordinate system.
+ * 
  * @author Urs Bollhalder
  * @version 1.0
  */
@@ -28,8 +28,7 @@ public class Point implements Comparable<Point> {
      * @param x the x-coordinate of the point
      * @param y the y-coordinate of the point
      */
-    public Point(int x, int y) 
-    {
+    public Point(int x, int y) {
         this.x = x;
         this.y = y;
     }
@@ -40,8 +39,7 @@ public class Point implements Comparable<Point> {
      *
      * @return the x-coordinate of the point
      */
-    public int getX() 
-    {
+    public int getX() {
         return this.x;
     }
 
@@ -50,7 +48,7 @@ public class Point implements Comparable<Point> {
      *
      * @return the y-coordinate of the point
      */
-    public int getY(){
+    public int getY() {
         return this.y;
     }
 
@@ -100,47 +98,37 @@ public class Point implements Comparable<Point> {
      * @param y the y-coordinate of the point
      * @return the quadrant of the point in the coordinate system
      */
-    public int getQuadrant(int x, int y)
-    {   
+    public int getQuadrant(int x, int y) {
         int quadrant = 0;
 
         if (x >= 0) {
-            if (y >= 0) 
-            {
+            if (y >= 0) {
                 quadrant = 1;
-            } 
-            else 
-            {
+            } else {
                 quadrant = 4;
             }
-        }
-        else 
-        {
-            if (y >= 0) 
-            {
+        } else {
+            if (y >= 0) {
                 quadrant = 2;
-            } 
-            else 
-            {
+            } else {
                 quadrant = 3;
-            } 
+            }
         }
 
         return quadrant;
     }
 
-
     // ------------------------ Equals & Hash ------------------------ //
     @Override
-    public final boolean equals(final Object object) { 
+    public final boolean equals(final Object object) {
         if (object == this) {
             return true;
         }
 
         // Checking for id only, as this is the only immutable attribute.
         return (object instanceof Point p)
-            && (p.x == this.x)
-            && (p.y == this.y);
+                && (p.x == this.x)
+                && (p.y == this.y);
     }
 
     @Override

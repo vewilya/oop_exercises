@@ -11,21 +11,24 @@ package ch.hslu.oop.SW04.Switchable;
  */
 
 /**
- * A class representing a car that implements the Switchable interface, as well as making use of the <code>Engine</code> class and the <code>Lights</code> class.
+ * A class representing a car that implements the Switchable interface, as well
+ * as making use of the <code>Engine</code> class and the <code>Lights</code>
+ * class.
  */
 public final class Car implements Switchable {
 
     /**
      * This main method creates a new Car object and tests its functionality.
+     * 
      * @param args
      */
     // public static void main(final String[] args) {
-    //     Car car = new Car();
+    // Car car = new Car();
 
-    //     System.out.println(car.isSwitchedOn());
+    // System.out.println(car.isSwitchedOn());
 
-    //     System.out.println(car.isCarLightsSwitchedOn());
-    //     car.switchOnCarMusicPlayer();
+    // System.out.println(car.isCarLightsSwitchedOn());
+    // car.switchOnCarMusicPlayer();
     // }
 
     /**

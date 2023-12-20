@@ -1,11 +1,14 @@
 package ch.hslu.oop.SW05.Shape;
+
 /**
- * The <code>Circle</code> class represents a circle with a given x and y coordinate and a radius.
+ * The <code>Circle</code> class represents a circle with a given x and y
+ * coordinate and a radius.
  */
-public final class Circle extends Shape{
+public final class Circle extends Shape {
 
     /**
      * This main method creates a new Circle object and tests its functionality.
+     * 
      * @param args main arguments
      */
     public static void main(String[] args) {
@@ -18,18 +21,18 @@ public final class Circle extends Shape{
     /**
      * Default constructor for the Circle class.
      *
-     * @param x The x coordinate of the circle.
-     * @param y The y coordinate of the circle.
+     * @param x      The x coordinate of the circle.
+     * @param y      The y coordinate of the circle.
      * @param radius The radius of the circle.
      */
     public Circle(final int x, final int y, final int radius) {
         super(x, y);
         this.radius = radius;
     }
-    
+
     @Override
     public int getPerimeter() {
-        int perimeter = (int) Math.round(2 * Math.PI * this.radius); 
+        int perimeter = (int) Math.round(2 * Math.PI * this.radius);
         return perimeter;
     }
 

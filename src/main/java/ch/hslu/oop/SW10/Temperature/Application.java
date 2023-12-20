@@ -22,9 +22,8 @@ import java.util.Scanner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 // TODO Enter same temperature value?!?
-// TODO 
+// TODO
 /**
  * Application
  */
@@ -32,7 +31,7 @@ public class Application {
 
     // Logge
     public Application() {
-}
+    }
 
     private static final Logger LOG = LoggerFactory.getLogger(Application.class);
 
@@ -41,7 +40,7 @@ public class Application {
         String input;
         Scanner scanner = new Scanner(System.in);
         TemperatureHistory temperatureHistory = new TemperatureHistory();
-        
+
         temperatureHistory.addTemperatureEventListener(new TemperatureEventListener() {
             @Override
             public void temperatureEventChange(TemperatureEvent temperatureEvent) {
@@ -61,19 +60,19 @@ public class Application {
                 try {
                     float value = Float.valueOf(input);
                     Temperature temperature = Temperature.createFromCelsius(value);
-    
+
                     // Adding temperature to history
                     temperatureHistory.add(temperature);
-                    
+
                 } catch (NumberFormatException nfe) {
                     LOG.error("Please enter a floating point value! Message: {}", nfe.getMessage(), nfe);
                 } catch (IllegalArgumentException iae) {
                     LOG.error("Please respect Low Temperature Limit", iae.toString());
                 }
-             } 
+            }
 
-            } while (!"exit".equals(input));
-            
+        } while (!"exit".equals(input));
+
         // Avoid Memory Leakage and close scanner object!
         scanner.close();
     } // close main

@@ -36,6 +36,7 @@ public final class DemoApp {
 
     /**
      * Main-Methode.
+     * 
      * @param args Startargumente.
      */
     public static void main(final String[] args) {
@@ -43,10 +44,10 @@ public final class DemoApp {
 
         final Lead lead = new Lead();
         System.out.println("--------------------------------");
-        
+
         String state = mercury.getAggregateState(TEMPERATURE);
-        LOGGER.info("State of Mercury at {}°C is {}", TEMPERATURE, state);  
-        
+        LOGGER.info("State of Mercury at {}°C is {}", TEMPERATURE, state);
+
         LOGGER.info("Classification {}", mercury.getElementClassification());
     }
 }

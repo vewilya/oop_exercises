@@ -6,8 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class TemperaturePoint implements Comparable<TemperaturePoint> {
-    
-    private LocalDateTime localDateTime; 
+
+    private LocalDateTime localDateTime;
     private Temperature temperature;
 
     private static final Logger LOG = LoggerFactory.getLogger(TemperaturePoint.class);
@@ -33,17 +33,22 @@ public class TemperaturePoint implements Comparable<TemperaturePoint> {
         return this.temperature;
     }
 
-    // ---------------------- Equals and HashCode Method Override ---------------------- //
-   
+    public final boolean isTemperaturePointPositve(TemperaturePoint tp) {
+        return tp.getTemperature().getTemperatureCelsius() > 0 ? true : false;
+    }
+
+    // ---------------------- Equals and HashCode Method Override
+    // ---------------------- //
+
     @Override
-    public final boolean equals(final Object object) { 
+    public final boolean equals(final Object object) {
         if (object == this) {
             return true;
         }
-        
+
         return (object instanceof TemperaturePoint tP)
-            && Objects.equals(tP.getTemperature(), this.getTemperature()) 
-            && Objects.equals(tP.getLDT(), this.getLDT());
+                && Objects.equals(tP.getTemperature(), this.getTemperature())
+                && Objects.equals(tP.getLDT(), this.getLDT());
     }
 
     @Override
@@ -51,11 +56,11 @@ public class TemperaturePoint implements Comparable<TemperaturePoint> {
         return Objects.hash(this.temperature, this.localDateTime);
     }
 
-
     // ---------------------- CompareTo Method Override ---------------------- //
 
     @Override
     public int compareTo(TemperaturePoint otherTemperaturePoint) {
-        return Float.compare(this.getTemperature().getTemperatureCelsius(), otherTemperaturePoint.getTemperature().getTemperatureCelsius());
+        return Float.compare(this.getTemperature().getTemperatureCelsius(),
+                otherTemperaturePoint.getTemperature().getTemperatureCelsius());
     }
 }

@@ -18,4 +18,3 @@
  * Element-Package.
  */
 package ch.hslu.oop.SW05.Element;
-

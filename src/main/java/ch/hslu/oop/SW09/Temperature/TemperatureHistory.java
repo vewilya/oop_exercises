@@ -12,14 +12,15 @@ public final class TemperatureHistory implements Comparable<TemperatureHistory> 
     private final Collection<Temperature> temperatureHistory = new ArrayList<>();
 
     // Defualt Constructor
-    public TemperatureHistory() {}
+    public TemperatureHistory() {
+    }
 
     public void add(final Temperature temperature) {
         this.temperatureHistory.add(temperature);
     }
 
     public void clear() {
-        if (this.getCount() > 0) 
+        if (this.getCount() > 0)
             this.temperatureHistory.clear();
     }
 
@@ -48,39 +49,40 @@ public final class TemperatureHistory implements Comparable<TemperatureHistory> 
     }
 
     public Temperature getAverageTemperature() {
-            
+
         float average = 0;
 
         if (this.getCount() > 0) {
-                Iterator<Temperature> iterator = temperatureHistory.iterator();
-                
-                while(iterator.hasNext()) {
-                    final Temperature temp = iterator.next();                
-                    
-                    average += temp.getTemperatureCelsius();
-                }
-                
-                average /= this.getCount();  
+            Iterator<Temperature> iterator = temperatureHistory.iterator();
+
+            while (iterator.hasNext()) {
+                final Temperature temp = iterator.next();
+
+                average += temp.getTemperatureCelsius();
             }
 
-            return Temperature.createFromCelsius(average);
-    }
+            average /= this.getCount();
+        }
 
-    @Override 
-    public String toString() {
-        return "Temperature Development - Number of Temperatures: " + this.getCount() + ", Max Temperature: " + this.getMaxTemperature() + ", Min Temperature: " + this.getMinTemperature(); 
+        return Temperature.createFromCelsius(average);
     }
 
     @Override
-    public boolean equals(final Object object) { 
+    public String toString() {
+        return "Temperature Development - Number of Temperatures: " + this.getCount() + ", Max Temperature: "
+                + this.getMaxTemperature() + ", Min Temperature: " + this.getMinTemperature();
+    }
+
+    @Override
+    public boolean equals(final Object object) {
         if (object == this) {
             return true;
         }
-        
+
         return (object instanceof TemperatureHistory tempDev)
-            && (tempDev.getCount() == this.getCount()) 
-            && (tempDev.getMaxTemperature() == this.getMaxTemperature()) 
-            && (tempDev.getMinTemperature() == this.getMinTemperature());
+                && (tempDev.getCount() == this.getCount())
+                && (tempDev.getMaxTemperature() == this.getMaxTemperature())
+                && (tempDev.getMinTemperature() == this.getMinTemperature());
     }
 
     @Override

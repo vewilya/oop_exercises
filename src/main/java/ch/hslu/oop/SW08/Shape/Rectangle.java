@@ -1,8 +1,10 @@
 package ch.hslu.oop.SW08.Shape;
 
 /**
- * The <code>Rectangle</code> class represents a rectangle with a given x and y coordinate and a width and height.
+ * The <code>Rectangle</code> class represents a rectangle with a given x and y
+ * coordinate and a width and height.
  * This class extends the Shape class.
+ * 
  * @author Urs Bollhalder
  * @version 1.0
  * @see Shape
@@ -13,9 +15,10 @@ public class Rectangle extends Shape {
 
     /**
      * Constructor for the Rectangle class.
-     * @param x x-coordinate of the rectangle
-     * @param y y-coordinate of the rectangle
-     * @param width width of the rectangle
+     * 
+     * @param x      x-coordinate of the rectangle
+     * @param y      y-coordinate of the rectangle
+     * @param width  width of the rectangle
      * @param height height of the rectangle
      */
     protected Rectangle(final int x, final int y, final int width, final int height) {
@@ -23,7 +26,7 @@ public class Rectangle extends Shape {
         this.width = width;
         this.height = height;
     }
-    
+
     @Override
     public int getPerimeter() {
         return (2 * this.width) + (2 * this.height);
@@ -37,7 +40,8 @@ public class Rectangle extends Shape {
 
     /**
      * Changes the dimension of the rectangle.
-     * @param newWidth new width of the rectangle
+     * 
+     * @param newWidth  new width of the rectangle
      * @param newHeight new height of the rectangle
      */
     public void changeDimension(int newWidth, int newHeight) {

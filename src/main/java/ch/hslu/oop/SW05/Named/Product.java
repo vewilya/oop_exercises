@@ -4,20 +4,23 @@ import java.util.UUID;
 
 /**
  * The <code>Product</code> class represents a product with a given name and id.
- * <p>It implements the Named interface and provides methods to get and set the name of the product.
- * @author  Urs Bollhalder
+ * <p>
+ * It implements the Named interface and provides methods to get and set the
+ * name of the product.
+ *
+ * @author Urs Bollhalder
  * @version 1.0
  * @see ch.hslu.oop.SW05.Named.Named
  */
 public final class Product implements Named {
 
     // public static void main(String[] args) {
-    //     Product p = new Product();
-    //     System.out.println(p.getId());
-    //     System.out.println(p.getName());
+    // Product p = new Product();
+    // System.out.println(p.getId());
+    // System.out.println(p.getName());
 
-    //     p.setName("Delay Lama");
-    //     System.out.println(p.getName());
+    // p.setName("Delay Lama");
+    // System.out.println(p.getName());
     // }
 
     /**
@@ -25,7 +28,7 @@ public final class Product implements Named {
      */
     public Product() {
         this.name = "unknown";
-        
+
         this.id = this.generateId();
     }
 
@@ -38,6 +41,7 @@ public final class Product implements Named {
 
     /**
      * A method to return the name of the product as a String.
+     *
      * @return The name of the product.
      */
     public String getName() {
@@ -46,6 +50,7 @@ public final class Product implements Named {
 
     /**
      * A method to return the id of the product as a String.
+     *
      * @return The id of the product.
      */
     public String getId() {

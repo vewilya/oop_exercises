@@ -36,6 +36,7 @@ public final class DemoApp {
 
     /**
      * Main-Methode.
+     * 
      * @param args Startargumente.
      */
     public static void main(final String[] args) {
@@ -52,9 +53,9 @@ public final class DemoApp {
 
         String name2 = product2.getName();
 
-        // Nicht möglich, da diese Methode nur auf der Implementierung Product verfügbar ist und nicht auf dem Interface Named!
+        // Nicht möglich, da diese Methode nur auf der Implementierung Product verfügbar
+        // ist und nicht auf dem Interface Named!
         // String id2 = product2.getID();
-
 
         // -----------
         toaster.setCategoryName("Kitchenware");

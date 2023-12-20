@@ -18,4 +18,3 @@
  * Switchable-Package.
  */
 package ch.hslu.oop.SW04.Switchable;
-

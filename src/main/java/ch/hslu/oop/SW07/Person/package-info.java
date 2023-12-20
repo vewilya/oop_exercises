@@ -18,4 +18,3 @@
  * Person-Package.
  */
 package ch.hslu.oop.SW07.Person;
-

@@ -18,4 +18,3 @@
  * Line-Package.
  */
 package ch.hslu.oop.SW06.Line;
-

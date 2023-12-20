@@ -18,4 +18,3 @@
  * Car-Package.
  */
 package ch.hslu.oop.SW10.Car;
-

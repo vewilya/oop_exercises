@@ -18,7 +18,6 @@ package ch.hslu.oop.SW04.Temperature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 /**
  * Demo-Applikation für {@link ch.hslu.oop.SW04.Temperature.Temperature}-Klasse.
  */
@@ -37,10 +36,10 @@ public final class DemoApp {
 
     /**
      * Main-Methode.
+     *
      * @param args Startargumente.
      */
 
-    
     public static void main(final String[] args) {
         Temperature temperature = new Temperature(TEMPERATURE);
         float temp = temperature.getTemperatureCelsius();

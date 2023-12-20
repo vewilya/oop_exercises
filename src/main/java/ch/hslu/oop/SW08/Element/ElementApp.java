@@ -8,7 +8,7 @@ import java.util.List;
  * Demo-Applikation für {@link ch.hslu.oop.SW05.Element.Element}-Klasse.
  */
 public final class ElementApp {
-    
+
     /**
      * Private Constructor.
      */

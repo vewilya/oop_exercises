@@ -16,22 +16,21 @@
 
 package ch.hslu.oop.SW11.Temperature_writeToFile;
 
-import java.beans.PropertyChangeListener;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+// import java.beans.PropertyChangeListener;
+// import java.io.DataInputStream;
+// import java.io.DataOutputStream;
+// import java.io.File;
+// import java.io.FileInputStream;
+// import java.io.FileOutputStream;
+// import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.List;
+// import java.util.List;
 import java.util.Scanner;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
-// TODO Checke BinärFile 
+// TODO Checke BinärFile
 /**
  * Application
  */
@@ -42,7 +41,6 @@ public class Application {
 
     private static final Logger LOG = LoggerFactory.getLogger(Application.class);
 
-    
     public static void main(String[] args) {
 
         String input;
@@ -79,7 +77,7 @@ public class Application {
                 }
             } else if (input.equals("reset")) {
                 System.out.println("Reset");
-                
+
                 // Delete Stats File
                 statsFileRnR.deleteStatsFile();
 
@@ -87,13 +85,13 @@ public class Application {
                 temperatureHistory.clear();
             } else {
                 LOG.info("Exit Progam");
-                
+
                 if (temperatureHistory.getCount() > 0) {
                     LOG.info("Temperature History {}", temperatureHistory.toString());
                     statsFileRnR.printStatstFile("temperatureStats.bin", temperatureHistory);
-                } else 
+                } else
                     LOG.info("Empty temperature history. No file was saved to disk");
-                    
+
                 statsFileRnR.readStatsFile("temperatureStats.bin");
             }
 

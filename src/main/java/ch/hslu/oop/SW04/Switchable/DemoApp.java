@@ -18,7 +18,6 @@ package ch.hslu.oop.SW04.Switchable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 /**
  * Demo-Applikation für {@link ch.hslu.oop.SW04.Switchable.Car}-Klasse.
  */
@@ -37,10 +36,10 @@ public final class DemoApp {
 
     /**
      * Main-Methode.
+     *
      * @param args Startargumente.
      */
 
-    
     public static void main(final String[] args) {
         Car car = new Car();
 

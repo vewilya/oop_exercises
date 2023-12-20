@@ -26,11 +26,12 @@ public final class ComparatorDemo {
 
     /**
      * Main-Methode.
+     * 
      * @param args Startargumente.
      */
     public static void main(final String[] args) {
 
-        /** Instantiate an empty array list for our Person objects*/
+        /** Instantiate an empty array list for our Person objects */
         final List<Person> persons = new ArrayList<Person>();
 
         /**
@@ -53,23 +54,24 @@ public final class ComparatorDemo {
         }
 
         /**
-         * Sort the array list by calling the sort method and passing in an instance of the PersonComparator as an argument.
+         * Sort the array list by calling the sort method and passing in an instance of
+         * the PersonComparator as an argument.
          */
         // persons.sort(new PersonComparator());
-        
+
         /**
          * Print out the sorted array list.
          */
         System.out.println("------------------");
         System.out.println("Sorted Array List:");
-        
+
         for (Person p : persons) {
             System.out.println(p.toString());
         }
 
         System.out.println("------------------");
         System.out.println("Max: " + Collections.max(persons));
-        
+
         System.out.println("------------------");
         System.out.println("Min: " + Collections.min(persons));
     }

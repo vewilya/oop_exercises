@@ -20,14 +20,18 @@ import nl.jqno.equalsverifier.Warning;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import ch.hslu.oop.SW11.csvTemperatureRead.Temperature;
+import ch.hslu.oop.SW11.csvTemperatureRead.TemperaturePoint;
+
 public class TemperaturePointTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(TemperaturePointTest.class);
 
-    @Test 
+    @Test
     void testConstructor() {
         TemperaturePoint tP = new TemperaturePoint(Temperature.createFromCelsius(23.3f), LocalDateTime.now());
-        TemperaturePoint tP2 = new TemperaturePoint(Temperature.createFromCelsius(23.3f), LocalDateTime.now().minusDays(1));
+        TemperaturePoint tP2 = new TemperaturePoint(Temperature.createFromCelsius(23.3f),
+                LocalDateTime.now().minusDays(1));
 
         assertThat(tP.getTemperature()).isEqualTo(tP2.getTemperature());
         assertThat(tP.getLDT()).isNotEqualTo(tP2.getLDT());
@@ -35,13 +39,14 @@ public class TemperaturePointTest {
 
     @Test
     void testCreateFromTemperaturePoint() {
-        TemperaturePoint tP2 = new TemperaturePoint(Temperature.createFromCelsius(23.3f), LocalDateTime.now().minusDays(1));
+        TemperaturePoint tP2 = new TemperaturePoint(Temperature.createFromCelsius(23.3f),
+                LocalDateTime.now().minusDays(1));
         TemperaturePoint tP3 = TemperaturePoint.createFromTemperaturePoint(tP2);
-        
+
         assertThat(tP2.getTemperature()).isEqualTo(tP3.getTemperature());
         assertThat(tP2.getLDT()).isEqualTo(tP3.getLDT());
     }
-   
+
     @Test
     void testGetLDT() {
         TemperaturePoint tP = new TemperaturePoint(Temperature.createFromCelsius(23.3f), LocalDateTime.now());
@@ -56,7 +61,7 @@ public class TemperaturePointTest {
 
     @Test
     void testEqualsContract() {
-        EqualsVerifier.forClass(TemperaturePoint.class).suppress(Warning.NONFINAL_FIELDS).verify(); 
+        EqualsVerifier.forClass(TemperaturePoint.class).suppress(Warning.NONFINAL_FIELDS).verify();
     }
 
     @Test
@@ -66,7 +71,6 @@ public class TemperaturePointTest {
 
         assertThat(!tP.equals(tPLater));
     }
-
 
     @Test
     void testHashCode() {
@@ -79,8 +83,8 @@ public class TemperaturePointTest {
     @Test
     void testCompareTo() {
         TemperaturePoint tP = new TemperaturePoint(Temperature.createFromCelsius(23.3f), LocalDateTime.now());
-        TemperaturePoint tPMiddle = new TemperaturePoint(Temperature.createFromCelsius(23.3f), LocalDateTime.now());
-        TemperaturePoint tPLater = new TemperaturePoint(Temperature.createFromCelsius(23.3f), LocalDateTime.now());
+        TemperaturePoint tPMiddle = new TemperaturePoint(Temperature.createFromCelsius(33.3f), LocalDateTime.now());
+        TemperaturePoint tPLater = new TemperaturePoint(Temperature.createFromCelsius(43.3f), LocalDateTime.now());
 
         assertTrue(tP.compareTo(tPMiddle) == -1);
         assertTrue(tP.compareTo(tP) == 0);

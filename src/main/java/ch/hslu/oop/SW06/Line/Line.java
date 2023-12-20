@@ -4,7 +4,8 @@ import java.util.Arrays;
 
 /**
  * Class representing a line with a start and end point.
- * @author Urs Bollhalder 
+ * 
+ * @author Urs Bollhalder
  * @version 1.0
  * @see ch.hslu.oop.SW04.Line.Point
  */
@@ -13,7 +14,7 @@ public final class Line {
     /**
      * Constructor taking in 4 integer values as parameters to define x and y
      * coordinates of start and end point.
-     * 
+     *
      * @param x1 x-coordinate of the start point
      * @param y1 y-coordinate of the start point
      * @param x2 x-coordinate of the end point
@@ -26,7 +27,7 @@ public final class Line {
 
     /**
      * Returns the start point of the line as a string.
-     * 
+     *
      * @return Start point of the line as a string
      */
     public String getStartPoint() {
@@ -35,7 +36,7 @@ public final class Line {
 
     /**
      * Returns the end point of the line as a string.
-     * 
+     *
      * @return End point of the line as a string
      */
     public String getEndPoint() {
@@ -44,7 +45,7 @@ public final class Line {
 
     /**
      * Returns the end point of the line as an object.
-     * 
+     *
      * @return End point line object
      */
     public Point getStartPointObject() {
@@ -53,7 +54,7 @@ public final class Line {
 
     /**
      * Returns the end point of the line as an object.
-     * 
+     *
      * @return line end point object
      */
     public Point getEndPointObject() {
@@ -62,7 +63,7 @@ public final class Line {
 
     /**
      * Sets the start point of the line.
-     * 
+     *
      * @param x x-coordinate of the start point
      * @param y y-coordinate of the start point
      */
@@ -72,7 +73,7 @@ public final class Line {
 
     /**
      * Sets the end point of the line.
-     * 
+     *
      * @param x x-coordinate of the end point
      * @param y y-coordinate of the end point
      */
@@ -82,7 +83,7 @@ public final class Line {
 
     /**
      * Returns the coordinates of the line's start and end points as a string.
-     * 
+     *
      * @return Coordinates of the line's start and end points as a string
      */
     public String getCoordinates() {

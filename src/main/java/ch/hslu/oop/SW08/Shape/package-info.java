@@ -18,4 +18,3 @@
  * Shape-Package.
  */
 package ch.hslu.oop.SW08.Shape;
-

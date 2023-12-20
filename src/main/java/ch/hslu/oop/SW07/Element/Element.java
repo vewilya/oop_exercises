@@ -5,7 +5,9 @@ import java.util.Objects;
 import ch.hslu.oop.SW07.Temperature.Temperature;
 
 /**
- * The half-abstract <code>Element</code> class represents an element with a given name, boiling and evaporation point.
+ * The half-abstract <code>Element</code> class represents an element with a
+ * given name, boiling and evaporation point.
+ * 
  * @author Urs Bollhalder
  * @version 1.0 from 2023-19-10
  * @see ch.hslu.oop.SW07.Element.Lead
@@ -14,7 +16,7 @@ import ch.hslu.oop.SW07.Temperature.Temperature;
  */
 public abstract class Element implements Comparable<Element> {
 
-    // -------------------- Private -------------------- // 
+    // -------------------- Private -------------------- //
 
     private final String name;
     private final int atomicMass;
@@ -24,17 +26,20 @@ public abstract class Element implements Comparable<Element> {
 
     // -------------------- Enum -------------------- //
     public enum ElementClassification {
-        ALKALI_METALS, ALKALINE_EARTH_METALS, TRANSITION_METALS, OTHER_METALS, METALLOIDS, NON_METALS, HALOGENS, NOBLE_GASES, RARE_EARTH_ELEMENTS
+        ALKALI_METALS, ALKALINE_EARTH_METALS, TRANSITION_METALS, OTHER_METALS, METALLOIDS, NON_METALS, HALOGENS,
+        NOBLE_GASES, RARE_EARTH_ELEMENTS
     }
 
-    // -------------------- Constructor -------------------- // 
+    // -------------------- Constructor -------------------- //
     /**
      * Constructor taking in a name, boiling and evaporation point.
-     * @param name The name of the element.
+     * 
+     * @param name             The name of the element.
      * @param evaporationPoint The evaporation point of the element.
-     * @param boilingPoint The boiling point of the element.
+     * @param boilingPoint     The boiling point of the element.
      */
-    protected Element(String name, int atomicMass, ElementClassification classification, float boilingPoint, float evaporationPoint) {
+    protected Element(String name, int atomicMass, ElementClassification classification, float boilingPoint,
+            float evaporationPoint) {
         this.name = name;
         this.atomicMass = atomicMass;
         this.classification = classification;
@@ -42,9 +47,11 @@ public abstract class Element implements Comparable<Element> {
         this.evaporationPoint = evaporationPoint;
     }
 
-    // -------------------- Getters and Setters -------------------- // 
+    // -------------------- Getters and Setters -------------------- //
     /**
-     * Returns the aggregate state of the element for a given temperature value in Celsius.
+     * Returns the aggregate state of the element for a given temperature value in
+     * Celsius.
+     * 
      * @param temperature The temperature to check.
      * @return The string for aggregate state of the element
      */
@@ -53,7 +60,7 @@ public abstract class Element implements Comparable<Element> {
             return "solid";
         else if (temperature >= this.boilingPoint && temperature < this.evaporationPoint)
             return "liquid";
-        else 
+        else
             return "gaseous";
     }
 
@@ -65,12 +72,13 @@ public abstract class Element implements Comparable<Element> {
             return "solid";
         else if (elementTemperature >= this.boilingPoint && elementTemperature < this.evaporationPoint)
             return "liquid";
-        else 
+        else
             return "gaseous";
     }
 
     /**
      * Returns the evaporation point of the element.
+     * 
      * @return The evaporation point of the element
      */
     public float getEvaporationPoint() {
@@ -79,6 +87,7 @@ public abstract class Element implements Comparable<Element> {
 
     /**
      * Returns the boiling point of the element.
+     * 
      * @return The boiling point of the element.
      */
     public float getBolilingPoint() {
@@ -87,6 +96,7 @@ public abstract class Element implements Comparable<Element> {
 
     /**
      * Returns the class name of the element.
+     * 
      * @return The class name of the element.
      */
     public ElementClassification getElementClassification() {
@@ -95,38 +105,42 @@ public abstract class Element implements Comparable<Element> {
 
     /**
      * Returns atomic mass of the element as an integer.
+     * 
      * @return The atomic mass of the element.
      */
     public int getAtomicMass() {
         return this.atomicMass;
     }
 
-    // -------------------- ToString Method Override -------------------- // 
+    // -------------------- ToString Method Override -------------------- //
 
     @Override
     public String toString() {
-        return "[ Element: " + this.name + ", Atomic Mass: " + this.atomicMass + ", Classification: " + this.classification + ", Boiling Point: " + this.boilingPoint + ", Evaporation Point: " + this.evaporationPoint + " ]";
+        return "[ Element: " + this.name + ", Atomic Mass: " + this.atomicMass + ", Classification: "
+                + this.classification + ", Boiling Point: " + this.boilingPoint + ", Evaporation Point: "
+                + this.evaporationPoint + " ]";
     }
 
-    // -------------------- Equals and HashCode Method Override -------------------- // 
+    // -------------------- Equals and HashCode Method Override --------------------
+    // //
 
     @Override
-    public final boolean equals(final Object object) { 
+    public final boolean equals(final Object object) {
         if (object == this) {
             return true;
         }
-        return (object instanceof Element e) 
-            && (e.classification == this.classification);
+        return (object instanceof Element e)
+                && (e.classification == this.classification);
     }
 
     // Typengleichheit implementiert!
-    // @Override 
+    // @Override
     // public final boolean equals(final Object object) {
-    //     if (object == this) {
-    //         return true;
-    //     }
+    // if (object == this) {
+    // return true;
+    // }
 
-    //     return (object == null ? false : object.getClass().equals(this.getClass()));
+    // return (object == null ? false : object.getClass().equals(this.getClass()));
     // }
 
     @Override
@@ -136,13 +150,12 @@ public abstract class Element implements Comparable<Element> {
 
     // ---------------------- CompareTo Method Override ---------------------- //
     /**
-     * Compares the atomic mass of the element with the atomic mass of another element.
+     * Compares the atomic mass of the element with the atomic mass of another
+     * element.
      */
     @Override
     public final int compareTo(Element otherElement) {
         return Integer.compare(this.atomicMass, otherElement.atomicMass);
     }
-    
-
 
 }

@@ -18,4 +18,3 @@
  * File-Package.
  */
 package ch.hslu.oop.SW11.File;
-

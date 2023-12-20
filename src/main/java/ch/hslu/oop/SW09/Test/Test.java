@@ -7,20 +7,20 @@ import org.slf4j.LoggerFactory;
 import ch.hslu.oop.SW09.Temperature.Temperature;
 
 public class Test {
-    
+
     // Logger
     private static final Logger LOG = LoggerFactory.getLogger(Test.class);
 
     public static void main(String[] args) {
-    
+
         String input;
         Scanner scanner = new Scanner(System.in);
-        
+
         do {
-            System.out.println("Bitte Temperatur eingeben (oder 'exit' zum Beenden): "); 
+            System.out.println("Bitte Temperatur eingeben (oder 'exit' zum Beenden): ");
             input = scanner.next();
-            
-            if("exit".equals(input))
+
+            if ("exit".equals(input))
                 break;
 
             try {
@@ -33,12 +33,11 @@ public class Test {
                 LOG.error("Please respect Low Temperature Limit", iae.toString());
             }
         } while (!"exit".equals(input));
-        
+
         System.out.println("Programm beendet.");
-        
+
         // Avoid Memory Leakage and close scanner object!
         scanner.close();
     }
-
 
 }

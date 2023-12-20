@@ -15,16 +15,16 @@ public class Store implements Named {
 
     @Override
     public String getName() {
-       return this.storeName;
+        return this.storeName;
     }
 
     @Override
     public void setName(String storeName) {
         this.storeName = storeName;
-        
+
     }
-    
-    // ---------------- Private ---------------- 
+
+    // ---------------- Private ----------------
 
     private String storeName;
 

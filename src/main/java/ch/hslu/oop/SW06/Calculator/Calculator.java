@@ -6,5 +6,5 @@ public class Calculator implements Summable {
     public int addition(int a, int b) {
         return a + b;
     }
-    
+
 }

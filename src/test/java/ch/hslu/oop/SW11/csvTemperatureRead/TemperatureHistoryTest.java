@@ -19,6 +19,12 @@ import nl.jqno.equalsverifier.Warning;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import ch.hslu.oop.SW11.csvTemperatureRead.Temperature;
+import ch.hslu.oop.SW11.csvTemperatureRead.TemperatureEvent;
+import ch.hslu.oop.SW11.csvTemperatureRead.TemperatureEventType;
+import ch.hslu.oop.SW11.csvTemperatureRead.TemperatureHistory;
+import ch.hslu.oop.SW11.csvTemperatureRead.TemperaturePoint;
+
 public class TemperatureHistoryTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(TemperatureHistoryTest.class);

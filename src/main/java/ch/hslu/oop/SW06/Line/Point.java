@@ -2,6 +2,7 @@ package ch.hslu.oop.SW06.Line;
 
 /**
  * The Point class represents a point in a two-dimensional coordinate system.
+ * 
  * @author Urs Bollhalder
  * @version 1.0
  * @see ch.hslu.oop.SW04.Line.Line
@@ -10,14 +11,13 @@ public class Point {
 
     public static void main(String[] args) {
         Point p = new Point(20, 10);
-        System.out.println("x: "+p.getX());
-        System.out.println("y: "+p.getY());
-        
-        p.moveRelativePolar(3/4*Math.PI, 100);
-        System.out.println("x: "+p.getX());
-        System.out.println("y: "+p.getY());
-    }
+        System.out.println("x: " + p.getX());
+        System.out.println("y: " + p.getY());
 
+        p.moveRelativePolar(3 / 4 * Math.PI, 100);
+        System.out.println("x: " + p.getX());
+        System.out.println("y: " + p.getY());
+    }
 
     /**
      * Constructs a point with initial coordinates (0, 0).
@@ -33,15 +33,14 @@ public class Point {
      * @param x the x-coordinate of the point
      * @param y the y-coordinate of the point
      */
-    public Point(int x, int y) 
-    {
+    public Point(int x, int y) {
         this.x = x;
         this.y = y;
     }
 
     /**
      * Copy constructor
-     * 
+     *
      * @author Urs Bollhalder
      * @version 1.0
      */
@@ -58,8 +57,7 @@ public class Point {
      *
      * @return the x-coordinate of the point
      */
-    public int getX() 
-    {
+    public int getX() {
         return x;
     }
 
@@ -68,7 +66,7 @@ public class Point {
      *
      * @return the y-coordinate of the point
      */
-    public int getY(){
+    public int getY() {
         return y;
     }
 
@@ -92,9 +90,10 @@ public class Point {
 
     /**
      * Moves the x and y coordinates by 2 relative int values deltaX and deltaY.
+     * 
      * @author Urs Bollhalder
      * @version 1.0
-     * @param deltaX The delta value by which the x-coordinate is moved. 
+     * @param deltaX The delta value by which the x-coordinate is moved.
      * @param deltaY The delta value by which the y-coordinate is moved.
      */
     public void moveRelativeCartesian(int deltaX, int deltaY) {
@@ -103,20 +102,23 @@ public class Point {
     }
 
     /**
-     * Moves the x and y coordinates with a point, containing a deltaX and deltaY value.
+     * Moves the x and y coordinates with a point, containing a deltaX and deltaY
+     * value.
+     * 
      * @param point Represents a vector
      */
     public void moveRelativeCartesian(Point point) {
         // this.x += point.getX();
         // this.y += point.getY();
-        
-        //Better!
+
+        // Better!
         this.moveRelativeCartesian(point.getX(), point.getY());
     }
 
     /**
      * Move Point relative with polar coordinates angle and vector magnitude
-     * @param angle Angle of the vector 
+     * 
+     * @param angle     Angle of the vector
      * @param magnitude Magnitude of the vector
      */
     public void moveRelativePolar(double angle, int magnitude) {
@@ -154,30 +156,21 @@ public class Point {
      * @param y the y-coordinate of the point
      * @return the quadrant of the point in the coordinate system
      */
-    public int getQuadrant(int x, int y)
-    {   
+    public int getQuadrant(int x, int y) {
         int quadrant = 0;
 
         if (x >= 0) {
-            if (y >= 0) 
-            {
+            if (y >= 0) {
                 quadrant = 1;
-            } 
-            else 
-            {
+            } else {
                 quadrant = 4;
             }
-        }
-        else 
-        {
-            if (y >= 0) 
-            {
+        } else {
+            if (y >= 0) {
                 quadrant = 2;
-            } 
-            else 
-            {
+            } else {
                 quadrant = 3;
-            } 
+            }
         }
 
         return quadrant;

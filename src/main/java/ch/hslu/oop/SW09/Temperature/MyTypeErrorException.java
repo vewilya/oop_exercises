@@ -1,7 +1,7 @@
 package ch.hslu.oop.SW09.Temperature;
 
 public class MyTypeErrorException extends Exception {
- 
+
     public MyTypeErrorException() {
         super();
     }
@@ -28,5 +28,5 @@ public class MyTypeErrorException extends Exception {
     @Override
     public String toString() {
         return super.toString();
-    }  
+    }
 }
